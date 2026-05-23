@@ -35,8 +35,8 @@ export function WordCard({ word, sentence, chapterId, timestamp, onClose, onSave
   }
 
   return (
-    <div className="fixed right-4 bottom-24 z-30 pointer-events-none">
-      <div className="w-80 pointer-events-auto">
+    <div className="fixed inset-x-0 bottom-40 sm:bottom-44 z-30 px-3 pointer-events-none">
+      <div className="mx-auto max-w-sm pointer-events-auto">
         <div className="bg-ink/40 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 animate-slide-up shadow-2xl shadow-black/40">
           <div className="flex items-start justify-between gap-3 mb-3">
             <span className="chip border-white/15 bg-white/10 text-ink-100/90">Save to Vault</span>

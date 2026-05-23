@@ -387,7 +387,13 @@ export function Player({ chapter }: Props) {
         </div>
       )}
 
-      <IdiomCard idiom={openIdiom} onClose={() => setOpenIdiom(null)} />
+      <IdiomCard
+        idiom={openIdiom}
+        sentence={activeSentence ?? null}
+        chapterId={chapter.id}
+        timestamp={state.currentTime}
+        onClose={() => setOpenIdiom(null)}
+      />
       {charSelection && (
         <WordCard
           word={charSelection.sentence.zh.slice(charSelection.start, charSelection.end)}
