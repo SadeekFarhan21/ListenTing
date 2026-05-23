@@ -1,0 +1,20 @@
+---
+interface Props {
+  bg?: "paper" | "blue" | "blue-deep" | "rose" | "rose-deep" | "sand" | "ink";
+  page: number | string;
+  total?: number | string;
+  brand?: string;
+  tag?: string;
+}
+const { bg = "paper", page, total = 14, brand = "LISTENING · 听", tag = "CONFIDENTIAL" } = Astro.props;
+---
+
+<section class={`slide bg-${bg}`} data-page={page}>
+  <div class="slide-inner">
+    <slot />
+    <div class="footer">
+      <span class="brand-mark">{brand}</span>
+      <span>{tag} · {page} / {total}</span>
+    </div>
+  </div>
+</section>

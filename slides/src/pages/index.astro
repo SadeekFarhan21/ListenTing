@@ -1,0 +1,554 @@
+---
+import SlideLayout from "../layouts/SlideLayout.astro";
+import Slide from "../components/Slide.astro";
+
+const TOTAL = 14;
+---
+
+<SlideLayout title="Listening · Anthropic Cultural Exchange Hackathon">
+  {/* ─────────────────────────────── 01 · TITLE ─────────────────────────────── */}
+  <Slide bg="paper" page={1} total={TOTAL}>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="eyebrow" style="margin-bottom: 1.2rem;">
+        Anthropic Cultural Exchange Hackathon · 2026
+      </div>
+      <h1 class="serif" style="font-size: clamp(3.8rem, 8.4vw, 7.6rem); line-height: 0.95; letter-spacing: -0.03em; margin: 0;">
+        <span class="zh" style="font-size: 0.72em; color: var(--sun); margin-right: 0.16em; vertical-align: -0.04em;">听</span>Listening.
+      </h1>
+      <p class="muted" style="margin-top: 0.6rem; font-size: clamp(0.9rem, 1.1vw, 1.05rem); letter-spacing: 0.18em; text-transform: uppercase;">
+        <span class="zh" style="color: var(--ink);">听</span> · <em style="font-style: normal; color: var(--ink-500);">tīng</em> · the act of listening
+      </p>
+      <hr class="divider" style="margin-top: 1.6rem; margin-bottom: 1.6rem; width: 80px;" />
+      <p class="lede" style="max-width: 56ch; font-size: clamp(1.25rem, 1.6vw, 1.55rem);">
+        A mobile audiobook that turns your commute into a Chinese-learning loop —
+        classical works narrated, idioms unpacked, and your spoken answers graded
+        by Claude.
+      </p>
+      <div style="margin-top: 2rem; display:flex; gap: 0.6rem; flex-wrap: wrap;">
+        <span class="chip"><span class="dot"></span> Claude Haiku 4.5 + Sonnet 4.5</span>
+        <span class="chip"><span class="dot" style="background: var(--gold)"></span> ElevenLabs TTS</span>
+        <span class="chip"><span class="dot" style="background: var(--jade)"></span> Next.js 15 · PWA</span>
+      </div>
+    </div>
+  </Slide>
+
+  {/* ─────────────────────────────── 02 · THE PROMPT ─────────────────────────────── */}
+  <Slide bg="rose" page={2} total={TOTAL}>
+    <div class="eyebrow">Prompt</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width: 64ch;">
+      <p class="serif" style="font-size: clamp(1.5rem, 2.2vw, 2.1rem); line-height: 1.3; color: var(--ink); margin: 0 0 1.4rem 0;">
+        As AI handles routine work, questions about human purpose become urgent.
+        Access to creative development and cultural preservation isn't equal.
+        People who could find meaning through creative expression often don't get
+        the chance.
+      </p>
+      <p class="serif" style="font-size: clamp(1.5rem, 2.2vw, 2.1rem); line-height: 1.3; color: var(--ink); margin: 0;">
+        Build something that
+        <span style="border-bottom: 2px solid var(--ink);">amplifies human creativity, helps people find meaning, or supports cultural expression and preservation</span>.
+      </p>
+    </div>
+  </Slide>
+
+  {/* ─────────────────────────────── 03 · THE GAP ─────────────────────────────── */}
+  <Slide bg="paper" page={3} total={TOTAL}>
+    <div class="eyebrow">The gap we keep hitting</div>
+    <h2 class="title" style="margin-top: 0.6rem; max-width: 18ch;">
+      Classical Chinese literature is locked behind <span style="color: var(--sun);">three doors.</span>
+    </h2>
+    <hr class="divider" />
+    <div class="grid-3" style="margin-top: 2.2rem;">
+      <div class="card">
+        <div class="tag tag-sun">01</div>
+        <h3 class="serif" style="font-size: 1.55rem; margin: 0.7rem 0 0.4rem;">Language</h3>
+        <p class="body muted">
+          The original text uses literary <span class="zh">文言文</span> with rare characters and
+          context-dependent grammar. Hard, even for native speakers.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag tag-gold">02</div>
+        <h3 class="serif" style="font-size: 1.55rem; margin: 0.7rem 0 0.4rem;">Culture</h3>
+        <p class="body muted">
+          Idioms like <span class="zh">知己知彼</span> are surface phrases; their meaning lives in 2500
+          years of military and political reference.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag tag-jade">03</div>
+        <h3 class="serif" style="font-size: 1.55rem; margin: 0.7rem 0 0.4rem;">Practice</h3>
+        <p class="body muted">
+          Reading is passive. Real fluency requires speaking, recall, and a
+          patient interlocutor who never gets tired of you stumbling.
+        </p>
+      </div>
+    </div>
+    <p class="body muted" style="margin-top: 2rem; max-width: 70ch;">
+      Listening treats all three as a single audio surface: a narrator reads, idioms
+      annotate themselves as they're spoken, and Claude pauses the story to ask
+      and grade — all from one screen, on a phone, hands-free.
+    </p>
+  </Slide>
+
+  {/* ─────────────────────────────── 04 · THE SOLUTION ─────────────────────────────── */}
+  <Slide bg="blue" page={4} total={TOTAL}>
+    <div class="eyebrow">The solution</div>
+    <h2 class="title" style="margin-top: 0.6rem;">
+      An audiobook that <span style="color: var(--sun);">talks back.</span>
+    </h2>
+    <hr class="divider" />
+    <div class="grid-3" style="margin-top: 1.8rem; gap: 1.6rem;">
+      <div class="card">
+        <div class="eyebrow">01 · Voice check-ins</div>
+        <h3 class="serif" style="font-size: 1.4rem; margin: 0.5rem 0 0.4rem;">Pause, ask, listen.</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          Every few minutes the narration fades. Claude asks a comprehension
+          question. You speak the answer — in English or Chinese — and the model
+          grades you before the book resumes.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">02 · Cultural pop-ups</div>
+        <h3 class="serif" style="font-size: 1.4rem; margin: 0.5rem 0 0.4rem;">Idioms in their world.</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          Chéngyǔ and historical references trigger a card the moment they're
+          spoken — literal meaning, cultural meaning, and the story behind it.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">03 · Personal vault</div>
+        <h3 class="serif" style="font-size: 1.4rem; margin: 0.5rem 0 0.4rem;">Save what sticks.</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          Tap once to save a sentence. It becomes a smart flashcard with the
+          audio snippet, pinyin, and meaning — stored on-device.
+        </p>
+      </div>
+    </div>
+    <p class="body muted" style="margin-top: 2rem; max-width: 70ch;">
+      Today's library: <span class="zh" style="color: var(--ink);">孙子兵法</span> — Sun Tzu's
+      <em>Art of War</em>, 13 chapters, fully narrated, fully annotated.
+    </p>
+  </Slide>
+
+  {/* ───────────────── 05 · TECHNICAL OVERVIEW (HIGHLIGHTED) ───────────────── */}
+  <Slide bg="ink" page={5} total={TOTAL}>
+    <div style="display:flex; align-items:center; gap: 12px;">
+      <span class="tag tag-sun">TECHNICAL EXECUTION</span>
+      <span class="eyebrow" style="color: rgba(243,238,224,0.5);">Architecture overview</span>
+    </div>
+    <h2 class="title" style="margin-top: 0.6rem; color: var(--ink-50);">
+      One audio file. <span style="color: var(--sun);">Five Claude touchpoints.</span> Zero servers.
+    </h2>
+    <hr class="divider" style="margin-top: 1.4rem;" />
+    <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-top: 1.4rem; flex: 1;">
+      <div class="code" style="margin: 0;">
+<span class="tok-mute"># Runtime data flow ──────────────────────────────────</span>
+
+[Audiobook MP3 + transcript]
+        │
+        ├── timestamp event ──► <span class="tok-fn">/api/translate</span>     <span class="tok-mute">(Haiku 4.5)</span>
+        │                          → idiom pop-up card
+        │
+        ├── smart pause   ───► <span class="tok-fn">/api/question</span>      <span class="tok-mute">(Haiku 4.5)</span>
+        │                          → text-to-speech via
+        │                            <span class="tok-fn">/api/speak</span>   <span class="tok-mute">(ElevenLabs)</span>
+        │
+        ├── user speaks   ───► <span class="tok-fn">/api/transcribe</span>    <span class="tok-mute">(Whisper)</span>
+        │                          → <span class="tok-fn">/api/grade</span>   <span class="tok-mute">(Sonnet 4.5)</span>
+        │                            → verdict + feedback
+        │
+        └── tap "save"    ───► IndexedDB vault   <span class="tok-mute">(idb-keyval)</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap: 0.9rem;">
+        <div class="card-dark">
+          <div class="eyebrow" style="color: var(--code-jade);">FRONTEND</div>
+          <div class="body" style="color: var(--ink-50); font-size: 0.95rem; margin-top: 4px;">
+            Next.js 15 · React 19 RC · Tailwind · PWA<br />
+            Web Speech API (mic capture, on-device)
+          </div>
+        </div>
+        <div class="card-dark">
+          <div class="eyebrow" style="color: var(--code-gold);">MODELS</div>
+          <div class="body" style="color: var(--ink-50); font-size: 0.95rem; margin-top: 4px;">
+            Claude <strong>Haiku 4.5</strong> — translation, questions<br />
+            Claude <strong>Sonnet 4.5</strong> — grading spoken answers
+          </div>
+        </div>
+        <div class="card-dark">
+          <div class="eyebrow" style="color: var(--code-accent);">AUDIO</div>
+          <div class="body" style="color: var(--ink-50); font-size: 0.95rem; margin-top: 4px;">
+            ElevenLabs Multilingual v2 (TTS, zh-CN)<br />
+            Whisper transcription on user replies
+          </div>
+        </div>
+      </div>
+    </div>
+  </Slide>
+
+  {/* ───────────────── 06 · MODEL ORCHESTRATION (HIGHLIGHTED) ───────────────── */}
+  <Slide bg="ink" page={6} total={TOTAL}>
+    <div style="display:flex; align-items:center; gap: 12px;">
+      <span class="tag tag-sun">TECHNICAL EXECUTION</span>
+      <span class="eyebrow" style="color: rgba(243,238,224,0.5);">Claude model orchestration</span>
+    </div>
+    <h2 class="title" style="margin-top: 0.6rem; color: var(--ink-50);">
+      Two models. <span style="color: var(--sun);">One reading session.</span>
+    </h2>
+    <hr class="divider" style="margin-top: 1.4rem;" />
+    <div class="grid-2" style="margin-top: 1.4rem; flex: 1;">
+      <div class="card-dark">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="tag" style="background: var(--gold);">HAIKU 4.5 · FAST</span>
+          <span class="mono" style="font-size: 0.75rem; color: var(--code-mute);">~200ms p50</span>
+        </div>
+        <h3 class="serif" style="font-size: 1.45rem; color: var(--ink-50); margin: 0.8rem 0 0.5rem;">High-volume, low-stakes</h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.95rem; padding-left: 1.1rem; margin: 0;">
+          <li>Idiom translation (<code class="mono">/api/translate</code>)</li>
+          <li>Comprehension question generation (<code class="mono">/api/question</code>)</li>
+          <li>Per-chapter transcript enrichment (offline batch)</li>
+        </ul>
+        <p class="body" style="color: var(--code-mute); font-size: 0.85rem; margin-top: 0.9rem;">
+          Called dozens of times per session. Cheap, fast, idempotent.
+        </p>
+      </div>
+      <div class="card-dark">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="tag" style="background: var(--sun);">SONNET 4.5 · SMART</span>
+          <span class="mono" style="font-size: 0.75rem; color: var(--code-mute);">~1.4s p50</span>
+        </div>
+        <h3 class="serif" style="font-size: 1.45rem; color: var(--ink-50); margin: 0.8rem 0 0.5rem;">Rare, high-judgment</h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.95rem; padding-left: 1.1rem; margin: 0;">
+          <li>Grading spoken answers (<code class="mono">/api/grade</code>)</li>
+          <li>4-tier verdict: great · good · partial · off</li>
+          <li>Tone-aware feedback: encouraging, second-person, ≤30 words</li>
+        </ul>
+        <p class="body" style="color: var(--code-mute); font-size: 0.85rem; margin-top: 0.9rem;">
+          Called once per check-in. Worth the latency for nuanced judgment.
+        </p>
+      </div>
+    </div>
+    <p class="body" style="color: var(--code-mute); margin-top: 1.4rem; max-width: 80ch;">
+      <strong style="color: var(--ink-50);">Why split?</strong> A single Sonnet call costs ~7× more and runs ~7× slower than Haiku. By
+      routing 80%+ of requests to Haiku and reserving Sonnet for the one moment that needs
+      pedagogical judgment, the app stays under $0.01 per learning session.
+    </p>
+  </Slide>
+
+  {/* ───────────────── 07 · VOICE PIPELINE (HIGHLIGHTED) ───────────────── */}
+  <Slide bg="ink" page={7} total={TOTAL}>
+    <div style="display:flex; align-items:center; gap: 12px;">
+      <span class="tag tag-sun">TECHNICAL EXECUTION</span>
+      <span class="eyebrow" style="color: rgba(243,238,224,0.5);">Voice loop: TTS ↔ STT ↔ Claude</span>
+    </div>
+    <h2 class="title" style="margin-top: 0.6rem; color: var(--ink-50);">
+      A round-trip in <span style="color: var(--sun);">≈2.4 seconds.</span>
+    </h2>
+    <hr class="divider" style="margin-top: 1.4rem;" />
+    <div class="code" style="margin-top: 1rem;">
+<span class="tok-mute">// /api/question · Claude Haiku 4.5</span>
+const resp = await client.messages.create(&#123;
+  model: MODELS.fast,
+  system: <span class="tok-str">"You are a warm Chinese listening tutor. Generate ONE
+           short comprehension question (≤18 words)…"</span>,
+  messages: [&#123; role: <span class="tok-str">"user"</span>, content: recentContext &#125;],
+&#125;);
+
+<span class="tok-mute">// /api/speak · ElevenLabs Multilingual v2</span>
+await elevenlabs.textToSpeech.<span class="tok-fn">convert</span>(voiceId, &#123;
+  text: question, model_id: <span class="tok-str">"eleven_multilingual_v2"</span>,
+&#125;);
+
+<span class="tok-mute">// Browser · Web Speech API (no upload — runs on-device)</span>
+const recognition = new <span class="tok-fn">webkitSpeechRecognition</span>();
+recognition.lang = answerLanguage === <span class="tok-str">"zh"</span> ? <span class="tok-str">"zh-CN"</span> : <span class="tok-str">"en-US"</span>;
+
+<span class="tok-mute">// /api/grade · Claude Sonnet 4.5</span>
+const verdict = await client.messages.create(&#123;
+  model: MODELS.smart,
+  system: <span class="tok-str">"Return JSON: &#123;verdict: great|good|partial|off, feedback,
+           modelAnswer&#125;. Be kind on 'off' — redirect, don't shame."</span>,
+  messages: [&#123; role: <span class="tok-str">"user"</span>, content: <span class="tok-fn">buildGradingPrompt</span>(...) &#125;],
+&#125;);
+    </div>
+    <p class="body" style="color: var(--code-mute); margin-top: 1.2rem;">
+      The mic stays on-device via Web Speech API — no raw audio leaves the phone. Only the
+      transcribed answer (a short string) is sent for grading.
+    </p>
+  </Slide>
+
+  {/* ───────────────── 08 · DATA PIPELINE (HIGHLIGHTED) ───────────────── */}
+  <Slide bg="ink" page={8} total={TOTAL}>
+    <div style="display:flex; align-items:center; gap: 12px;">
+      <span class="tag tag-sun">TECHNICAL EXECUTION</span>
+      <span class="eyebrow" style="color: rgba(243,238,224,0.5);">Offline enrichment pipeline</span>
+    </div>
+    <h2 class="title" style="margin-top: 0.6rem; color: var(--ink-50);">
+      The book is <span style="color: var(--sun);">pre-chewed</span> before you press play.
+    </h2>
+    <hr class="divider" style="margin-top: 1.4rem;" />
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.4rem; flex: 1;">
+      <div class="card-dark">
+        <div class="mono" style="color: var(--code-jade); font-size: 0.78rem;">scripts/prepare-chapters.ts</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.25rem; margin: 0.7rem 0 0.4rem;">1 · Segment</h3>
+        <p class="body" style="color: var(--ink-100); font-size: 0.88rem; line-height: 1.45;">
+          Raw <span class="zh">孙子兵法</span> text → 13 chapter JSONs, sentence-tokenized
+          with stable IDs.
+        </p>
+      </div>
+      <div class="card-dark">
+        <div class="mono" style="color: var(--code-jade); font-size: 0.78rem;">scripts/enrich-translations.ts</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.25rem; margin: 0.7rem 0 0.4rem;">2 · Enrich</h3>
+        <p class="body" style="color: var(--ink-100); font-size: 0.88rem; line-height: 1.45;">
+          Each sentence → Claude → pinyin + word gloss + English + idiom flags.
+          Cached. Resumable.
+        </p>
+      </div>
+      <div class="card-dark">
+        <div class="mono" style="color: var(--code-jade); font-size: 0.78rem;">scripts/generate-audio.ts</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.25rem; margin: 0.7rem 0 0.4rem;">3 · Narrate</h3>
+        <p class="body" style="color: var(--ink-100); font-size: 0.88rem; line-height: 1.45;">
+          Sentence text → ElevenLabs → per-chapter MP3 with sentence-level
+          timestamps for the player.
+        </p>
+      </div>
+    </div>
+    <p class="body" style="color: var(--code-mute); margin-top: 1.4rem; max-width: 88ch;">
+      <strong style="color: var(--ink-50);">Why offline?</strong> Translating
+      a 6,000-character book at runtime would burn $$ and seconds for every user.
+      One Claude pass per sentence at build time → infinite playback at near-zero
+      cost. The output is plain JSON shipped in <code class="mono">public/chapters/*.json</code>.
+    </p>
+  </Slide>
+
+  {/* ───────────────── 09 · OFFLINE-FIRST / PWA (HIGHLIGHTED) ───────────────── */}
+  <Slide bg="ink" page={9} total={TOTAL}>
+    <div style="display:flex; align-items:center; gap: 12px;">
+      <span class="tag tag-sun">TECHNICAL EXECUTION</span>
+      <span class="eyebrow" style="color: rgba(243,238,224,0.5);">PWA, on-device state, privacy</span>
+    </div>
+    <h2 class="title" style="margin-top: 0.6rem; color: var(--ink-50);">
+      Your phone is the <span style="color: var(--sun);">server.</span>
+    </h2>
+    <hr class="divider" style="margin-top: 1.4rem;" />
+    <div class="grid-2" style="margin-top: 1.4rem; flex: 1; gap: 1.6rem;">
+      <div class="card-dark">
+        <div class="eyebrow" style="color: var(--code-jade);">Storage</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.35rem; margin: 0.5rem 0 0.4rem;">
+          IndexedDB via <code class="mono" style="font-size:0.82em;">idb-keyval</code>
+        </h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.9rem; padding-left: 1.1rem; margin: 0.4rem 0 0;">
+          <li>Vault entries (saved sentences + audio + pinyin)</li>
+          <li>Playback position per chapter</li>
+          <li>User settings (language preference, check-in cadence)</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="eyebrow" style="color: var(--code-gold);">Network</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.35rem; margin: 0.5rem 0 0.4rem;">
+          API calls only on demand
+        </h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.9rem; padding-left: 1.1rem; margin: 0.4rem 0 0;">
+          <li>Chapter assets cached once → offline playback</li>
+          <li>Claude calls only when user triggers a check-in</li>
+          <li>Subway-safe: failures degrade gracefully to "read mode"</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="eyebrow" style="color: var(--code-accent);">Privacy</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.35rem; margin: 0.5rem 0 0.4rem;">
+          Mic capture stays local
+        </h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.9rem; padding-left: 1.1rem; margin: 0.4rem 0 0;">
+          <li>Web Speech API transcribes in-browser</li>
+          <li>Only the text (rarely &gt;30 words) is sent to Claude</li>
+          <li>No accounts, no telemetry, no audio uploads</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="eyebrow" style="color: var(--ink-100);">Install</div>
+        <h3 class="serif" style="color: var(--ink-50); font-size: 1.35rem; margin: 0.5rem 0 0.4rem;">
+          Add to Home Screen
+        </h3>
+        <ul class="body" style="color: var(--ink-100); font-size: 0.9rem; padding-left: 1.1rem; margin: 0.4rem 0 0;">
+          <li>One install — no app store</li>
+          <li>Runs in iOS / Android Safari, Chrome, Firefox</li>
+          <li>Background audio + lockscreen controls (Media Session API)</li>
+        </ul>
+      </div>
+    </div>
+  </Slide>
+
+  {/* ─────────────────────────────── 10 · IMPACT ─────────────────────────────── */}
+  <Slide bg="sand" page={10} total={TOTAL}>
+    <div class="eyebrow">Impact potential</div>
+    <h2 class="title" style="margin-top: 0.6rem; max-width: 20ch;">
+      A loop that fits in the gaps of a day.
+    </h2>
+    <hr class="divider" />
+    <div class="grid-3" style="margin-top: 2rem;">
+      <div>
+        <div class="serif" style="font-size: clamp(2.4rem, 4vw, 3.4rem); color: var(--sun); line-height: 1;">30M+</div>
+        <div class="body muted" style="margin-top: 0.6rem;">
+          adult learners studying Mandarin worldwide — the largest second-language
+          cohort, and the one most starved of audio practice with native cultural framing.
+        </div>
+      </div>
+      <div>
+        <div class="serif" style="font-size: clamp(2.4rem, 4vw, 3.4rem); color: var(--gold); line-height: 1;">2500</div>
+        <div class="body muted" style="margin-top: 0.6rem;">
+          years of <span class="zh">孙子兵法</span> commentary, idioms, and historical
+          reference — currently locked away from anyone without a graduate-level reading
+          ability or a private tutor.
+        </div>
+      </div>
+      <div>
+        <div class="serif" style="font-size: clamp(2.4rem, 4vw, 3.4rem); color: var(--jade); line-height: 1;">~$0.01</div>
+        <div class="body muted" style="margin-top: 0.6rem;">
+          marginal cost per learning session today, thanks to the Haiku/Sonnet split and
+          offline enrichment. Every commute becomes a tutor session.
+        </div>
+      </div>
+    </div>
+    <p class="body" style="margin-top: 2rem; max-width: 78ch; color: var(--ink-700);">
+      The shape generalizes. Swap the book and you have <em>Beowulf</em>, the
+      <em>Mahābhārata</em>, <em>Don Quixote</em> — any text whose audio + cultural layer
+      has never been affordable to package together.
+    </p>
+  </Slide>
+
+  {/* ─────────────────────────────── 11 · ETHICAL ALIGNMENT ─────────────────────────────── */}
+  <Slide bg="rose" page={11} total={TOTAL}>
+    <div class="eyebrow">Ethical alignment</div>
+    <h2 class="title" style="margin-top: 0.6rem;">
+      The model is the <span style="color: var(--sun);">tutor</span>, never the <em>learner</em>.
+    </h2>
+    <hr class="divider" />
+    <div class="grid-2" style="margin-top: 1.6rem; gap: 1.6rem;">
+      <div class="card">
+        <div class="eyebrow">Empowering, not replacing</div>
+        <p class="body" style="margin-top: 0.5rem;">
+          Claude generates <em>questions</em> for you to answer — it doesn't generate
+          paraphrases that pretend to be your understanding. The act of speaking the
+          answer is yours, and ungeneratable by the model.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Respect the source culture</div>
+        <p class="body" style="margin-top: 0.5rem;">
+          The Chinese text is presented in its original form, with translation as a
+          scaffold — not a replacement. Idiom cards show <em>literal → cultural →
+          historical</em>, so the learner ends up closer to the source, not further from it.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Kind by default</div>
+        <p class="body" style="margin-top: 0.5rem;">
+          The grading prompt requires <strong>encouraging, second-person feedback
+          ≤30 words</strong>. The "off" verdict is required to <em>gently redirect, don't
+          shame</em>. Learning is fragile; the system reflects that.
+        </p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Privacy as a feature</div>
+        <p class="body" style="margin-top: 0.5rem;">
+          No accounts. No telemetry. Audio is captured on-device via Web Speech API; only
+          transcribed text leaves the phone. The vault lives in IndexedDB — you can wipe
+          it with a single button.
+        </p>
+      </div>
+    </div>
+  </Slide>
+
+  {/* ─────────────────────────────── 12 · LIVE DEMO ─────────────────────────────── */}
+  <Slide bg="paper" page={12} total={TOTAL}>
+    <div class="eyebrow">Live demo</div>
+    <h2 class="title" style="margin-top: 0.6rem;">
+      <span class="zh" style="color: var(--sun);">谋攻</span> · Chapter 3, in three taps.
+    </h2>
+    <hr class="divider" />
+    <div class="grid-4" style="margin-top: 2rem;">
+      <div class="card">
+        <div class="tag tag-sun">01</div>
+        <h3 class="serif" style="font-size: 1.25rem; margin: 0.6rem 0 0.4rem;">Open</h3>
+        <p class="body muted" style="font-size: 0.92rem;">Tap "Chapter 3 · Attack by Strategy". Audio starts; transcript scrolls in sync.</p>
+      </div>
+      <div class="card">
+        <div class="tag tag-gold">02</div>
+        <h3 class="serif" style="font-size: 1.25rem; margin: 0.6rem 0 0.4rem;">Idiom card</h3>
+        <p class="body muted" style="font-size: 0.92rem;">
+          <span class="zh">知己知彼</span> triggers a pop-up — literal "know-self know-other",
+          cultural "informed strategy".
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag tag-jade">03</div>
+        <h3 class="serif" style="font-size: 1.25rem; margin: 0.6rem 0 0.4rem;">Check-in</h3>
+        <p class="body muted" style="font-size: 0.92rem;">Narration fades. Claude asks: <em>"Why did the general avoid attacking the city?"</em></p>
+      </div>
+      <div class="card">
+        <div class="tag" style="background: var(--ink);">04</div>
+        <h3 class="serif" style="font-size: 1.25rem; margin: 0.6rem 0 0.4rem;">Speak + save</h3>
+        <p class="body muted" style="font-size: 0.92rem;">You answer aloud. Verdict + feedback appear. Tap to save the line to your vault.</p>
+      </div>
+    </div>
+    <p class="body muted" style="margin-top: 2rem; max-width: 70ch;">
+      Run locally: <code class="mono">pnpm dev</code> in <code class="mono">apps/web</code>, then open
+      <code class="mono">http://localhost:3000/app</code>.
+    </p>
+  </Slide>
+
+  {/* ─────────────────────────────── 13 · ROADMAP ─────────────────────────────── */}
+  <Slide bg="blue" page={13} total={TOTAL}>
+    <div class="eyebrow">What's next</div>
+    <h2 class="title" style="margin-top: 0.6rem;">
+      A library, not a book.
+    </h2>
+    <hr class="divider" />
+    <div class="grid-3" style="margin-top: 2rem;">
+      <div class="card">
+        <div class="tag tag-sun">Near</div>
+        <h3 class="serif" style="font-size: 1.35rem; margin: 0.6rem 0 0.4rem;">Spaced review</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          Vault entries surface on a Leitner schedule — Claude generates a new
+          comprehension cue each time, so you never re-memorize the same flashcard.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag tag-gold">Mid</div>
+        <h3 class="serif" style="font-size: 1.35rem; margin: 0.6rem 0 0.4rem;">More canon</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          <span class="zh">论语</span>, <span class="zh">道德经</span>, <span class="zh">史记</span> selections.
+          Each one is just a new run of the offline enrichment pipeline.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag tag-jade">Long</div>
+        <h3 class="serif" style="font-size: 1.35rem; margin: 0.6rem 0 0.4rem;">Other languages</h3>
+        <p class="body muted" style="font-size: 0.95rem;">
+          Same pipeline → Old English <em>Beowulf</em>, Sanskrit <em>Gītā</em>, Classical
+          Arabic <em>Muʿallaqāt</em>. The architecture is language-agnostic.
+        </p>
+      </div>
+    </div>
+  </Slide>
+
+  {/* ─────────────────────────────── 14 · THANK YOU ─────────────────────────────── */}
+  <Slide bg="paper" page={14} total={TOTAL}>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="eyebrow">Thank you</div>
+      <h2 class="serif" style="font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.03em; margin: 0.8rem 0 0;">
+        <span class="zh" style="color: var(--sun); margin-right: 0.2em;">听</span>
+        Listen your way into Chinese.
+      </h2>
+      <hr class="divider" style="margin-top: 1.6rem; margin-bottom: 1.6rem; width: 80px;" />
+      <p class="lede" style="max-width: 56ch;">
+        We built Listening to make a 2,500-year-old text feel like a podcast that pauses to
+        check on you. Questions, demos, and the code — happy to go deeper on any of it.
+      </p>
+      <div style="margin-top: 2rem; display:flex; gap: 0.6rem; flex-wrap: wrap;">
+        <span class="chip"><span class="dot"></span> apps/web · Next.js 15</span>
+        <span class="chip"><span class="dot" style="background: var(--gold)"></span> slides · Astro 5</span>
+        <span class="chip"><span class="dot" style="background: var(--jade)"></span> Claude Haiku 4.5 + Sonnet 4.5</span>
+      </div>
+    </div>
+  </Slide>
+</SlideLayout>
