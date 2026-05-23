@@ -1,0 +1,77 @@
+---
+import "../styles/global.css";
+interface Props {
+  title?: string;
+}
+const { title = "Tīng · Hackathon Deck" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <slot />
+    </div>
+
+    <div class="hud" id="hud">
+      <button id="prev" aria-label="Previous slide">‹</button>
+      <span id="counter">1 / 1</span>
+      <button id="next" aria-label="Next slide">›</button>
+    </div>
+
+    <script is:inline>
+      (function () {
+        const deck = document.getElementById("deck");
+        const slides = Array.from(deck.querySelectorAll(".slide"));
+        const counter = document.getElementById("counter");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+
+        const fromHash = () => {
+          const n = parseInt((location.hash || "").replace("#", ""), 10);
+          return Number.isFinite(n) ? Math.min(Math.max(n - 1, 0), slides.length - 1) : 0;
+        };
+
+        let i = fromHash();
+
+        function render() {
+          slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+          counter.textContent = `${i + 1} / ${slides.length}`;
+          const hash = `#${i + 1}`;
+          if (location.hash !== hash) history.replaceState(null, "", hash);
+        }
+        function go(delta) {
+          i = Math.min(Math.max(i + delta, 0), slides.length - 1);
+          render();
+        }
+        prevBtn.addEventListener("click", () => go(-1));
+        nextBtn.addEventListener("click", () => go(1));
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+            e.preventDefault();
+            go(1);
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            e.preventDefault();
+            go(-1);
+          } else if (e.key === "Home") {
+            i = 0;
+            render();
+          } else if (e.key === "End") {
+            i = slides.length - 1;
+            render();
+          }
+        });
+        window.addEventListener("hashchange", () => {
+          i = fromHash();
+          render();
+        });
+        render();
+      })();
+    </script>
+  </body>
+</html>
