@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(xxd)",
-      "Bash(iconv -f GBK -t UTF-8 \"/Users/alex/Desktop/Anthropic-Hackathon/《孙子兵法》原文与译文_qinkan.net.txt\")"
+      "Bash(iconv -f GBK -t UTF-8 \"/Users/alex/Desktop/Anthropic-Hackathon/《孙子兵法》原文与译文_qinkan.net.txt\")",
+      "Bash(mv \"Chapter 1/Gemini_Generated_Image_e5c6nne5c6nne5c6.png\" \"Chapter 1/chapter1_image1.png\")",
+      "Bash(mv \"Chapter 1/Gemini_Generated_Image_f7rw1uf7rw1uf7rw.png\" \"Chapter 1/chapter1_image2.png\")",
+      "Bash(mv \"Chapter 2/Gemini_Generated_Image_muh4semuh4semuh4.png\" \"Chapter 2/chapter2_image1.png\")",
+      "Bash(mv \"Chapter 2/Screenshot 2026-05-23 at 10.59.37 AM.png\" \"Chapter 2/chapter2_image2.png\")",
+      "Bash(mv \"Chapter 3/Gemini_Generated_Image_tp1m2ftp1m2ftp1m.png\" \"Chapter 3/chapter3_image1.png\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(git -C /Users/alex/Desktop/Anthropic-Hackathon add apps/web/src/components/IdiomCard.tsx apps/web/src/components/WordCard.tsx apps/web/src/components/Player.tsx)",
+      "Bash(git -C /Users/alex/Desktop/Anthropic-Hackathon commit -m ' *)",
+      "Bash(node -e ' *)"
     ]
   }
 }
