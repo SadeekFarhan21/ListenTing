@@ -1,0 +1,158 @@
+{
+  "id": "8",
+  "titleZh": "九变",
+  "titlePinyin": "Jiǔ Biàn",
+  "titleEn": "The Nine Variations",
+  "duration": 59.48,
+  "audioSrc": "/audio/ch8.mp3",
+  "hasAudio": false,
+  "sentences": [
+    {
+      "id": 0,
+      "zh": "孙子曰：凡用兵之法，将受命于君，合军聚合。",
+      "gloss": "孙子说：大凡用兵的法则，主将接受国君的命令，组织军队，聚集军需，出征时在难以通行的“圮地”不可宿营，在四通八达的“衢地”应结交邻国，在难以生存的“绝地”不可停留，在被敌包围的“围地”要巧设计谋，陷入走投无路的“死地”就要坚决奋战。",
+      "start": 0,
+      "end": 3.78,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "孙子曰",
+          "pinyin": "Sūn zǐ yuē",
+          "literal": "Sun Tzu says",
+          "meaning": "\"Sun Tzu says.\" The traditional opening line of each chapter, like \"Confucius said\" (子曰) in the Analects.",
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "zh": "泛地无舍，衢地合交，绝地无留，围地则谋，死地则战，途有所不由，军有所不击，城有所不攻，地有所不争，君命有所不受。",
+      "gloss": "有的道路不要走，有的敌军不要打，有的城池不要攻，有的地方不要争，国君的有些命令不要执行。",
+      "start": 4.13,
+      "end": 14.35,
+      "idioms": [
+        {
+          "term": "地",
+          "pinyin": "dì",
+          "literal": "Earth / Ground",
+          "meaning": "Terrain — distance, danger, openness. The third fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "zh": "故将通于九变之利者，知用兵矣；将不通九变之利，虽知地形，不能得地之利矣；治兵不知九变之术，虽知五利，不能得人之用矣。",
+      "gloss": "所以，将帅能够精通以上各种机变的运用，就是懂得用兵了。 将帅不精通以上各种机变的运用，虽然了解地形，也不能得到地利。 指挥军队不知道各种机变的方法，虽然知道上面的“途”、“军”、“城”、“地”、“君命”五事之利，也不能充分发挥军队的作用。",
+      "start": 15.3,
+      "end": 26.41,
+      "idioms": [
+        {
+          "term": "地",
+          "pinyin": "dì",
+          "literal": "Earth / Ground",
+          "meaning": "Terrain — distance, danger, openness. The third fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "zh": "是故智者之虑，必杂于利害，杂于利而务可信也，杂于害而患可解也。",
+      "gloss": "聪明的将帅思考问题，必须兼顾到“利害”两个方面。",
+      "start": 27.36,
+      "end": 33.36
+    },
+    {
+      "id": 4,
+      "zh": "是故屈诸侯者以害，役诸侯者以业，趋诸侯者以利。",
+      "gloss": "考虑到“利”，能够充分估计到顺“利”的一面；考虑到“害”，能够预先解除祸患。 要通过“害”迫使诸侯屈服，通过繁杂之事役使诸侯忙乱，通过“利”诱使诸侯上当。",
+      "start": 33.71,
+      "end": 38.16
+    },
+    {
+      "id": 5,
+      "zh": "故用兵之法，无恃其不来，恃吾有以待之；无恃其不攻，恃吾有所不可攻也。",
+      "gloss": "用兵的法则是，不要寄希望于敌人不会来，而要依靠自己做好了充分准备；不要寄希望于敌人不进攻，而要依靠自己拥有使敌人无法进攻的力量。",
+      "start": 39.11,
+      "end": 45.55,
+      "idioms": [
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "zh": "故将有五危，必死可杀，必生可虏，忿速可侮，廉洁可辱，爱民可烦。",
+      "gloss": "将帅有五种致命的弱点：只知死拼可能被诱杀，贪生怕死可能被俘虏，急躁易怒可能中敌人轻侮的阴谋，廉洁好名可能入敌人污辱的圈套，一味“爱民”可能导致烦扰而不得安宁。",
+      "start": 46.5,
+      "end": 52.06,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "zh": "凡此五者，将之过也，用兵之灾也。",
+      "gloss": "以上五点，是将帅的过错，也是用兵的灾害。",
+      "start": 52.41,
+      "end": 55.29,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "zh": "覆军杀将，必以五危，不可不察也。",
+      "gloss": "军队覆灭，将帅被杀，必定是由于这五种危险引起的，是不可不充分认识的。",
+      "start": 55.64,
+      "end": 58.53,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    }
+  ]
+}

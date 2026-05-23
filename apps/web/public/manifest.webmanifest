@@ -1,40 +1,25 @@
 {
-  "name": "Anthropic Hackathon",
-  "short_name": "Hackathon",
-  "description": "A frontend that works as both a website and an installable app.",
-  "id": "/?source=pwa",
-  "start_url": "/app?source=pwa",
+  "name": "Tīng — Listen Your Way Into Chinese",
+  "short_name": "Tīng",
+  "description": "Audiobook-first Chinese learning with voice check-ins, idiom cards, and a smart vocab vault.",
+  "start_url": "/app",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
-  "orientation": "any",
-  "theme_color": "#cc785c",
-  "background_color": "#f7f5f1",
-  "categories": ["productivity", "developer"],
+  "orientation": "portrait",
+  "background_color": "#0F1115",
+  "theme_color": "#0F1115",
   "icons": [
     {
       "src": "/icon.svg",
-      "type": "image/svg+xml",
       "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     },
     {
       "src": "/icon-maskable.svg",
-      "type": "image/svg+xml",
       "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Open dashboard",
-      "url": "/app",
-      "description": "Jump straight to the app dashboard."
-    },
-    {
-      "name": "New chat",
-      "url": "/app/chat",
-      "description": "Start a new chat session."
     }
   ]
 }

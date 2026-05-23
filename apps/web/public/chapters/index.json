@@ -1,0 +1,121 @@
+{
+  "chapters": [
+    {
+      "id": "1",
+      "titleZh": "始计",
+      "titleEn": "Initial Calculations",
+      "titlePinyin": "Shǐ Jì",
+      "duration": 88.08,
+      "hasAudio": false,
+      "sentenceCount": 22
+    },
+    {
+      "id": "2",
+      "titleZh": "作战",
+      "titleEn": "Waging War",
+      "titlePinyin": "Zuò Zhàn",
+      "duration": 85.83,
+      "hasAudio": false,
+      "sentenceCount": 18
+    },
+    {
+      "id": "3",
+      "titleZh": "谋攻",
+      "titleEn": "Attack by Strategy",
+      "titlePinyin": "Móu Gōng",
+      "duration": 107.57,
+      "hasAudio": false,
+      "sentenceCount": 18
+    },
+    {
+      "id": "4",
+      "titleZh": "军形",
+      "titleEn": "Tactical Dispositions",
+      "titlePinyin": "Jūn Xíng",
+      "duration": 77.94,
+      "hasAudio": false,
+      "sentenceCount": 19
+    },
+    {
+      "id": "5",
+      "titleZh": "兵势",
+      "titleEn": "Energy",
+      "titlePinyin": "Bīng Shì",
+      "duration": 87.67,
+      "hasAudio": false,
+      "sentenceCount": 20
+    },
+    {
+      "id": "6",
+      "titleZh": "虚实",
+      "titleEn": "Weak Points and Strong",
+      "titlePinyin": "Xū Shí",
+      "duration": 151.29,
+      "hasAudio": false,
+      "sentenceCount": 31
+    },
+    {
+      "id": "7",
+      "titleZh": "军争",
+      "titleEn": "Maneuvering",
+      "titlePinyin": "Jūn Zhēng",
+      "duration": 118.92,
+      "hasAudio": false,
+      "sentenceCount": 23
+    },
+    {
+      "id": "8",
+      "titleZh": "九变",
+      "titleEn": "The Nine Variations",
+      "titlePinyin": "Jiǔ Biàn",
+      "duration": 59.48,
+      "hasAudio": false,
+      "sentenceCount": 9
+    },
+    {
+      "id": "9",
+      "titleZh": "行军",
+      "titleEn": "The Army on the March",
+      "titlePinyin": "Xíng Jūn",
+      "duration": 147.48,
+      "hasAudio": false,
+      "sentenceCount": 21
+    },
+    {
+      "id": "10",
+      "titleZh": "地形",
+      "titleEn": "Terrain",
+      "titlePinyin": "Dì Xíng",
+      "duration": 134.1,
+      "hasAudio": false,
+      "sentenceCount": 26
+    },
+    {
+      "id": "11",
+      "titleZh": "九地",
+      "titleEn": "The Nine Situations",
+      "titlePinyin": "Jiǔ Dì",
+      "duration": 264.11,
+      "hasAudio": false,
+      "sentenceCount": 48
+    },
+    {
+      "id": "12",
+      "titleZh": "火攻",
+      "titleEn": "Attack by Fire",
+      "titlePinyin": "Huǒ Gōng",
+      "duration": 72.63,
+      "hasAudio": false,
+      "sentenceCount": 18
+    },
+    {
+      "id": "13",
+      "titleZh": "用间",
+      "titleEn": "The Use of Spies",
+      "titlePinyin": "Yòng Jiàn",
+      "duration": 112.97,
+      "hasAudio": false,
+      "sentenceCount": 17
+    }
+  ]
+}

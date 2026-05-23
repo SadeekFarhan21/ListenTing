@@ -1,29 +1,31 @@
 {
   "name": "web",
-  "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "check": "astro check",
-    "prepare:chapter": "node --import tsx scripts/prepare-chapter.ts"
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare-chapters": "tsx scripts/prepare-chapters.ts",
+    "enrich-translations": "tsx scripts/enrich-translations.ts",
+    "generate-audio": "tsx scripts/generate-audio.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.98.0",
-    "@astrojs/vercel": "^9.0.5",
-    "@elevenlabs/elevenlabs-js": "^2.49.1",
-    "astro": "^5.14.1",
-    "idb-keyval": "^6.2.4"
+    "@anthropic-ai/sdk": "^0.30.1",
+    "idb-keyval": "^6.2.1",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@types/node": "^25.9.1",
-    "dotenv": "^17.4.2",
-    "tsx": "^4.22.3",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   }
 }

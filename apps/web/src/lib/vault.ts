@@ -1,45 +1,37 @@
+"use client";
 import { get, set, del, keys } from "idb-keyval";
+import type { VaultEntry } from "./types";
 
-export interface VaultCard {
-  id: string;
-  chapterId: string;
-  sentenceIdx: number;
-  zh: string;
-  pinyin: string;
-  en: string;
-  audioSrc: string;
-  start: number;
-  end: number;
-  savedAt: number;
-}
+const PREFIX = "vault:";
 
-function cardId(chapterId: string, sentenceIdx: number) {
-  return `card:${chapterId}:${sentenceIdx}`;
-}
-
-export async function saveCard(
-  input: Omit<VaultCard, "id" | "savedAt">,
-): Promise<VaultCard> {
-  const card: VaultCard = {
-    ...input,
-    id: cardId(input.chapterId, input.sentenceIdx),
+export async function saveEntry(entry: Omit<VaultEntry, "id" | "savedAt" | "reviewCount">): Promise<VaultEntry> {
+  const id = (globalThis.crypto?.randomUUID?.() ?? `v_${Date.now()}_${Math.random().toString(36).slice(2)}`);
+  const full: VaultEntry = {
+    ...entry,
+    id,
     savedAt: Date.now(),
+    reviewCount: 0,
   };
-  await set(card.id, card);
-  return card;
+  await set(PREFIX + id, full);
+  return full;
 }
 
-export async function listCards(): Promise<VaultCard[]> {
-  const allKeys = await keys();
-  const cardKeys = allKeys.filter(
-    (k): k is string => typeof k === "string" && k.startsWith("card:"),
-  );
-  const cards = await Promise.all(cardKeys.map((k) => get<VaultCard>(k)));
-  return cards
-    .filter((c): c is VaultCard => !!c)
+export async function listEntries(): Promise<VaultEntry[]> {
+  const allKeys = (await keys()).filter((k): k is string => typeof k === "string" && k.startsWith(PREFIX));
+  const entries = await Promise.all(allKeys.map((k) => get<VaultEntry>(k)));
+  return entries
+    .filter((e): e is VaultEntry => !!e)
     .sort((a, b) => b.savedAt - a.savedAt);
 }
 
-export async function deleteCard(id: string): Promise<void> {
-  await del(id);
+export async function deleteEntry(id: string): Promise<void> {
+  await del(PREFIX + id);
+}
+
+export async function markReviewed(id: string): Promise<void> {
+  const e = await get<VaultEntry>(PREFIX + id);
+  if (!e) return;
+  e.reviewCount += 1;
+  e.lastReviewedAt = Date.now();
+  await set(PREFIX + id, e);
 }

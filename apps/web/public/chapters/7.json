@@ -1,0 +1,302 @@
+{
+  "id": "7",
+  "titleZh": "军争",
+  "titlePinyin": "Jūn Zhēng",
+  "titleEn": "Maneuvering",
+  "duration": 118.92,
+  "audioSrc": "/audio/ch7.mp3",
+  "hasAudio": false,
+  "sentences": [
+    {
+      "id": 0,
+      "zh": "孙子曰：凡用兵之法，将受命于君，合军聚众，交和而舍，莫难于军争。",
+      "gloss": "孙子说：大凡用兵的法则，将帅接受国君的命令，从征集民众、组织军队到同敌人对阵，在这过程中没有比争取先机之利更困难的。",
+      "start": 0,
+      "end": 5.78,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "孙子曰",
+          "pinyin": "Sūn zǐ yuē",
+          "literal": "Sun Tzu says",
+          "meaning": "\"Sun Tzu says.\" The traditional opening line of each chapter, like \"Confucius said\" (子曰) in the Analects.",
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "zh": "军争之难者，以迂为直，以患为利。",
+      "gloss": "争取先机之利最困难的地方，是要把迂回的弯路变为捷径，要把不利变成有利。",
+      "start": 6.13,
+      "end": 9.02
+    },
+    {
+      "id": 2,
+      "zh": "故迂其途，而诱之以利，后人发，先人至，此知迂直之计者也。",
+      "gloss": "所以用迂回绕道的佯动，并用小利引诱敌人，这样就能比敌人后出发而先到达所要争夺的要地，这就是懂得以迂为直的方法了。",
+      "start": 9.97,
+      "end": 15.08
+    },
+    {
+      "id": 3,
+      "zh": "军争为利，军争为危。",
+      "gloss": "军争有有利的一面，同时军争也有危险的一面。",
+      "start": 16.03,
+      "end": 17.81
+    },
+    {
+      "id": 4,
+      "zh": "举军而争利则不及，委军而争利则辎重捐。",
+      "gloss": "如果全军整装去争利，就不能按时到达预定位置；如果轻装去争利，辎重就会丢失。",
+      "start": 18.16,
+      "end": 21.93
+    },
+    {
+      "id": 5,
+      "zh": "是故卷甲而趋，日夜不处，倍道兼行，百里而争利，则擒三将军，劲者先，疲者后，其法十一而至；五十里而争利，则蹶上将军，其法半至；三十里而争利，则三分之二至。",
+      "gloss": "因此，收起铠甲日夜兼程，走上百里去争利，三军的将领都可能被敌俘虏；强壮的士兵先走，疲弱的士兵随后，其结果只会有十分之一的兵力赶到；走五十里去争利，上军的将领会受挫折，只有半数的兵力赶到；走三十里去争利，只有三分之二的兵力赶到。",
+      "start": 22.28,
+      "end": 36.28,
+      "idioms": [
+        {
+          "term": "道",
+          "pinyin": "dào",
+          "literal": "the Way",
+          "meaning": "More than a road — the moral alignment between a ruler and the people. The first of Sun Tzu's five fundamentals.",
+          "kind": "concept"
+        },
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        },
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "zh": "是故军无辎重则亡，无粮食则亡，无委积则亡。",
+      "gloss": "因此，军队没有辎重就不能生存，没有粮食就不能生存，没有物资储备就不能生存。",
+      "start": 36.63,
+      "end": 40.63
+    },
+    {
+      "id": 7,
+      "zh": "故不知诸侯之谋者，不能豫交；不知山林、险阻、沮泽之形者，不能行军；不用乡导者，不能得地利。",
+      "gloss": "不了解列国诸侯战略企图的，不能与之结交；不熟悉山林、险阻、水网、沼泽等地形的，不能行军；不重用向导的，不能得到地利。",
+      "start": 41.58,
+      "end": 49.81,
+      "idioms": [
+        {
+          "term": "地",
+          "pinyin": "dì",
+          "literal": "Earth / Ground",
+          "meaning": "Terrain — distance, danger, openness. The third fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "zh": "故兵以诈立，以利动，以分和为变者也。",
+      "gloss": "所以，用兵作战要善于用“诈”，采取行动要取决于“利”，部署与战术的变化要通过集中或分散来实现。",
+      "start": 50.16,
+      "end": 53.49
+    },
+    {
+      "id": 9,
+      "zh": "故其疾如风，其徐如林，侵掠如火，不动如山，难知如阴，动如雷震。",
+      "gloss": "所以，军队行动迅速时象疾风，行动舒缓时像森林，攻击时像烈火，防御时像山岳，隐蔽时像阴天，冲锋时像雷霆。",
+      "start": 53.84,
+      "end": 59.39,
+      "idioms": [
+        {
+          "term": "其疾如风",
+          "pinyin": "qí jí rú fēng",
+          "literal": "their swiftness like wind",
+          "meaning": "Swift as wind — first of the 风林火山 (wind/forest/fire/mountain) sequence, later borrowed by Japan's Takeda Shingen as his battle standard.",
+          "kind": "reference"
+        },
+        {
+          "term": "其徐如林",
+          "pinyin": "qí xú rú lín",
+          "literal": "their slowness like forest",
+          "meaning": "Silent as a forest. Second of the wind-forest-fire-mountain sequence.",
+          "kind": "reference"
+        },
+        {
+          "term": "侵掠如火",
+          "pinyin": "qīn lüè rú huǒ",
+          "literal": "invading-plundering like fire",
+          "meaning": "Devastating as fire. Third of the wind-forest-fire-mountain sequence.",
+          "kind": "reference"
+        },
+        {
+          "term": "不动如山",
+          "pinyin": "bù dòng rú shān",
+          "literal": "not-moving like mountain",
+          "meaning": "Immovable as a mountain. Fourth of the famous four. Used today for unshakeable resolve.",
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "zh": "掠乡分众，廓地分利，悬权而动。",
+      "gloss": "要分兵掠取敌域内作战物资，要派兵扼守扩张地域内的有利地形，要衡量利害得失相机而动。",
+      "start": 59.74,
+      "end": 62.41,
+      "idioms": [
+        {
+          "term": "地",
+          "pinyin": "dì",
+          "literal": "Earth / Ground",
+          "meaning": "Terrain — distance, danger, openness. The third fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "zh": "先知迂直之计者胜，此军争之法也。",
+      "gloss": "事先懂得以迂为直方法的就胜利，这就是军争的法则。",
+      "start": 62.76,
+      "end": 65.87,
+      "idioms": [
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "zh": "《军政》曰：“言不相闻，故为之金鼓；视不相见，故为之旌旗。",
+      "gloss": "《军政》说过：“作战中用话语难以传递指挥信息，所以设置了金鼓；用动作难以让士兵看清指挥信号，所以设置了旌旗。",
+      "start": 66.82,
+      "end": 72.16
+    },
+    {
+      "id": 13,
+      "zh": "”夫金鼓旌旗者，所以一民之耳目也。",
+      "gloss": "”金鼓和旌旗，是统一全军行动的。",
+      "start": 72.51,
+      "end": 75.84
+    },
+    {
+      "id": 14,
+      "zh": "故夜战多金鼓，昼战多旌旗，所以变人之耳目也。",
+      "gloss": "因此夜间作战多用金鼓，白天作战多用旌旗。",
+      "start": 76.19,
+      "end": 80.41
+    },
+    {
+      "id": 15,
+      "zh": "民既专一，则勇者不得独进，怯者不得独退，此用众之法也。",
+      "gloss": "全军行动既然一致，那么，勇敢的士兵就不会单独冒进，怯懦的士兵也不会畏缩后退。 这就是指挥大部队作战的方法。",
+      "start": 80.76,
+      "end": 85.87,
+      "idioms": [
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "zh": "三军可夺气，将军可夺心。",
+      "gloss": "对于敌人的军队，可使其士气衰落；对于敌人的将领，可使其决心动摇。",
+      "start": 86.82,
+      "end": 89.04,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "zh": "是故朝气锐，昼气惰，暮气归。",
+      "gloss": "军队初战时士气饱满，过一段时间，就逐渐懈怠，最后士气就衰竭了。",
+      "start": 89.39,
+      "end": 91.84
+    },
+    {
+      "id": 18,
+      "zh": "善用兵者，避其锐气，击其惰归，此治气者也。",
+      "gloss": "所以善于用兵的人，要避开敌人初来时的锐气，等待敌人士气懈怠衰竭时再去打它，这是通过削弱敌军士气而获胜的办法。",
+      "start": 92.19,
+      "end": 95.97
+    },
+    {
+      "id": 19,
+      "zh": "以治待乱，以静待哗，此治心者也。",
+      "gloss": "用自己的严整对付敌人的混乱，用自己的镇静对付敌人的喧嚣，这是通过利用敌军心理躁动而获胜的办法。",
+      "start": 96.32,
+      "end": 99.21
+    },
+    {
+      "id": 20,
+      "zh": "以近待远，以佚待劳，以饱待饥，此治力者也。",
+      "gloss": "在离自己较近的战场上等待远道而来的敌人，在自己部队得到充分休息的状态下等待疲惫不堪的敌人，在自己部队吃饱肚子的情况下等待饥肠辘辘的敌人，这是通过消耗敌军力气而获胜的办法。",
+      "start": 99.56,
+      "end": 103.33
+    },
+    {
+      "id": 21,
+      "zh": "无邀正正之旗，无击堂堂之陈，此治变者也。",
+      "gloss": "不要试图缴获排列整齐的军旗，不要试图攻击堂堂之阵的敌人，这是通过待敌之变获胜的办法。",
+      "start": 103.68,
+      "end": 107.46
+    },
+    {
+      "id": 22,
+      "zh": "故用兵之法，高陵勿向，背丘勿逆，佯北勿从，锐卒勿攻，饵兵勿食，归师勿遏，围师遗阙，穷寇勿迫，此用兵之法也。",
+      "gloss": "用兵的法则是：敌军占领山地不要仰攻，敌军背靠高地不要正面迎击，敌军假装败退不要跟踪追击，敌军的精锐不要去攻击，敌人的诱兵不要去理睬，敌军退回本国不要去拦截，包围敌人要虚留缺口，敌军已到绝境时不要过分逼迫。 这些，就是用兵的法则。",
+      "start": 108.41,
+      "end": 117.97,
+      "idioms": [
+        {
+          "term": "法",
+          "pinyin": "fǎ",
+          "literal": "Method / Law",
+          "meaning": "Organization — chain of command, logistics, regulation. The fifth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    }
+  ]
+}

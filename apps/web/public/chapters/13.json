@@ -1,0 +1,198 @@
+{
+  "id": "13",
+  "titleZh": "用间",
+  "titlePinyin": "Yòng Jiàn",
+  "titleEn": "The Use of Spies",
+  "duration": 112.97,
+  "audioSrc": "/audio/ch13.mp3",
+  "hasAudio": false,
+  "sentences": [
+    {
+      "id": 0,
+      "zh": "孙子曰：凡兴师十万，出征千里，百姓之费，公家之奉，日费千金，内外骚动，怠于道路，不得操事者，七十万家。",
+      "gloss": "孙子说：凡是兴兵十万，出征千里，百姓的耗费，公家的开支，每天要花费千金；前后方动乱不安，民夫戍卒奔波疲惫，不能从事正常耕作的有七十万家。",
+      "start": 0,
+      "end": 9.11,
+      "idioms": [
+        {
+          "term": "道",
+          "pinyin": "dào",
+          "literal": "the Way",
+          "meaning": "More than a road — the moral alignment between a ruler and the people. The first of Sun Tzu's five fundamentals.",
+          "kind": "concept"
+        },
+        {
+          "term": "日费千金",
+          "pinyin": "rì fèi qiān jīn",
+          "literal": "daily expense (of) a thousand pieces of gold",
+          "meaning": "A vast daily cost. Still used today for any expensive operation.",
+          "kind": "chengyu"
+        },
+        {
+          "term": "孙子曰",
+          "pinyin": "Sūn zǐ yuē",
+          "literal": "Sun Tzu says",
+          "meaning": "\"Sun Tzu says.\" The traditional opening line of each chapter, like \"Confucius said\" (子曰) in the Analects.",
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "zh": "相守数年，以争一日之胜，而爱爵禄百金，不知敌之情者，不仁之至也，非民之将也，非主之佐也，非胜之主也。",
+      "gloss": "双方相持数年，是为了决胜于一旦，如果吝惜爵禄和金钱，不肯用来重用间谍，以致因为不能了解敌情而导致失败，那就是不仁到了极点。",
+      "start": 9.46,
+      "end": 18.79,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "zh": "故明君贤将所以动而胜人，成功出于众者，先知也。",
+      "gloss": "这种人不配做军队的统帅，算不上是国君的辅佐，也不可能是胜利的获得者。",
+      "start": 19.14,
+      "end": 23.59,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "zh": "先知者，不可取于鬼神，不可象于事，不可验于度，必取于人，知敌之情者也。",
+      "gloss": "明君、贤将，其所以一出兵就能战胜敌人，得到的成功超出众人，就在于先知。 要先知，不可求鬼神臆测，不可靠象数占卜，不可观天象推卦，必须依靠人，依靠那些了解敌人情况的人。",
+      "start": 23.94,
+      "end": 30.38
+    },
+    {
+      "id": 4,
+      "zh": "故用间有五：有因间，有内间，有反间，有死间，有生间。",
+      "gloss": "间谍运用的方式有五种：有“乡间”、“内间”、“反间”、“死间”、“生间”。 五种间谍同时都使用起来，使敌人莫敌我用间的规律，这乃是使用间谍神妙莫测的方法，是国君胜敌的法宝。",
+      "start": 31.33,
+      "end": 35.78
+    },
+    {
+      "id": 5,
+      "zh": "五间俱起，莫知其道，是谓神纪，人君之宝也。",
+      "gloss": "所谓“乡间”，是利用敌国乡人做间谍。 所谓“内间”，是利用敌方官吏做间谍。",
+      "start": 36.13,
+      "end": 39.91,
+      "idioms": [
+        {
+          "term": "道",
+          "pinyin": "dào",
+          "literal": "the Way",
+          "meaning": "More than a road — the moral alignment between a ruler and the people. The first of Sun Tzu's five fundamentals.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "zh": "乡间者，因其乡人而用之；内间者，因其官人而用之；反间者，因其敌间而用之；死间者，为诳事于外，令吾闻知之而传于敌间也；生间者，反报也。",
+      "gloss": "所谓“反间”，是利用敌方间谍为我所用。 所谓“死间”，就是制造假情报，并通过潜入敌营的我方间谍传给敌间（使敌军受骗，一旦真情败露，我方间谍不免被处死）。 所谓“生间”，是探知敌人情报后能够生还的人。",
+      "start": 40.26,
+      "end": 52.48
+    },
+    {
+      "id": 7,
+      "zh": "故三军之事，莫亲于间，赏莫厚于间，事莫密于间，非圣贤不能用间，非仁义不能使间，非微妙不能得间之实。",
+      "gloss": "所以在军队的亲密关系中，没有比间谍更亲近的，奖赏没有比间谍更优厚的，事情没有比间谍更秘密的。",
+      "start": 53.43,
+      "end": 62.76
+    },
+    {
+      "id": 8,
+      "zh": "微哉微哉！",
+      "gloss": "不是圣贤之人不能使用间谍，不是仁义之人不能指使间谍，不是精细之人不能辨别间谍提供情报的真伪。",
+      "start": 63.11,
+      "end": 64.31
+    },
+    {
+      "id": 9,
+      "zh": "无所不用间也。",
+      "gloss": "微妙呀，微妙! 无时无处不在使用间谍。",
+      "start": 64.66,
+      "end": 65.99
+    },
+    {
+      "id": 10,
+      "zh": "间事未发而先闻者，间与所告者兼死。",
+      "gloss": "用间的事情尚未实施，先被泄露出去，那么间谍和听到秘密的人都要处死。",
+      "start": 66.34,
+      "end": 69.68
+    },
+    {
+      "id": 11,
+      "zh": "凡军之所欲击，城之所欲攻，人之所欲杀，必先知其守将、左右、谒者、门者、舍人之姓名，令吾间必索知之。",
+      "gloss": "凡是要攻打敌方军队，要攻占敌方城堡，要刺杀敌方官员，必须预先知道其主管将领、左右亲信、传事官员、守门官吏和门客幕僚的姓名，命令我方间谍必须探查清楚。",
+      "start": 70.63,
+      "end": 79.52,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "zh": "敌间之来间我者，因而利之，导而舍之，故反间可得而用也；因是而知之，故乡间、内间可得而使也；因是而知之，故死间为诳事，可使告敌；因是而知之，故生间可使如期。",
+      "gloss": "必须搜查出前来侦察我军的敌方间谍，加以收买，再行劝导，然后放回去，这样我可将其作为“反间”而用了。 由于使用了“反间”，这样“乡间”、“内间”就可以为我所用了；由于使用了“反间”，这样就能使“死间”传假情报给敌人；由于使用了“反间”，就可以使“生间”按预定时间回报敌情。",
+      "start": 80.47,
+      "end": 94.91
+    },
+    {
+      "id": 13,
+      "zh": "五间之事，主必知之，知之必在于反间，故反间不可不厚也。",
+      "gloss": "五种间谍的使用，君主都必须了解掌握。 了解情况关键在于使用“反间”，所以对“反间”不可不给予优厚待遇。",
+      "start": 95.26,
+      "end": 100.37
+    },
+    {
+      "id": 14,
+      "zh": "昔殷之兴也，伊挚在夏；周之兴也，吕牙在殷。",
+      "gloss": "从前商朝的兴起，在于伊挚曾经在夏为间，了解夏朝内情；周朝的兴起，在于姜尚曾经在商为间，了解商朝的内情。",
+      "start": 101.32,
+      "end": 105.1
+    },
+    {
+      "id": 15,
+      "zh": "故明君贤将，能以上智为间者，必成大功。",
+      "gloss": "所以明智的国君，贤能的将帅，能用高超智慧的人做间谍，必成大功。",
+      "start": 105.45,
+      "end": 109.01,
+      "idioms": [
+        {
+          "term": "将",
+          "pinyin": "jiàng",
+          "literal": "General",
+          "meaning": "Leadership — wisdom, trust, benevolence, courage, discipline. The fourth fundamental.",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "zh": "此兵之要，三军之所恃而动也。",
+      "gloss": "这是用兵重要之处，整个军队都要依重于它来行动。",
+      "start": 109.36,
+      "end": 112.02
+    }
+  ]
+}
