@@ -1,0 +1,157 @@
+---
+import AppShell from "../../layouts/AppShell.astro";
+
+const messages = [
+  { role: "assistant", text: "Hi — I'm the app-side preview. The composer below is wired up to local state only." },
+  { role: "user", text: "Cool. Is this the same codebase as the marketing site?" },
+  { role: "assistant", text: "Same Astro project, same components and styles. Marketing pages render statically, /app/* pages use the app shell instead of the Base layout." },
+];
+---
+
+<AppShell title="Chat · Hackathon">
+  <span slot="title">Chat</span>
+  <div slot="actions">
+    <button class="btn btn-ghost" type="button" id="reset-chat">Clear</button>
+  </div>
+
+  <div class="thread" id="thread">
+    {messages.map((m) => (
+      <div class:list={["msg", m.role]}>
+        <span class="role">{m.role === "user" ? "You" : "Assistant"}</span>
+        <p>{m.text}</p>
+      </div>
+    ))}
+  </div>
+
+  <form class="composer" id="composer">
+    <textarea
+      id="composer-input"
+      placeholder="Send a message…"
+      rows="1"
+      autocomplete="off"
+      autocapitalize="sentences"
+    ></textarea>
+    <button class="btn btn-primary" type="submit" aria-label="Send">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+    </button>
+  </form>
+</AppShell>
+
+<script>
+  const form = document.getElementById("composer") as HTMLFormElement | null;
+  const input = document.getElementById("composer-input") as HTMLTextAreaElement | null;
+  const thread = document.getElementById("thread");
+  const reset = document.getElementById("reset-chat");
+
+  function append(role: "user" | "assistant", text: string) {
+    if (!thread) return;
+    const el = document.createElement("div");
+    el.className = `msg ${role}`;
+    el.innerHTML = `<span class="role">${role === "user" ? "You" : "Assistant"}</span><p></p>`;
+    el.querySelector("p")!.textContent = text;
+    thread.appendChild(el);
+    el.scrollIntoView({ behavior: "smooth", block: "end" });
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = input?.value.trim();
+    if (!value) return;
+    append("user", value);
+    input!.value = "";
+    input!.style.height = "auto";
+    setTimeout(() => {
+      append(
+        "assistant",
+        "Got it. Wire this composer to your model of choice — the shell, fonts, and PWA bits already work.",
+      );
+    }, 350);
+  });
+
+  input?.addEventListener("input", () => {
+    if (!input) return;
+    input.style.height = "auto";
+    input.style.height = `${Math.min(input.scrollHeight, 200)}px`;
+  });
+
+  reset?.addEventListener("click", () => {
+    if (!thread) return;
+    thread.querySelectorAll(".msg").forEach((n) => n.remove());
+  });
+</script>
+
+<style>
+  .thread {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+  .msg {
+    display: grid;
+    gap: 4px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--rule);
+    background: var(--bg-elev);
+  }
+  .msg.user {
+    background: color-mix(in oklab, var(--accent) 10%, var(--bg-elev));
+    border-color: color-mix(in oklab, var(--accent) 30%, var(--rule));
+    margin-left: 48px;
+  }
+  .msg.assistant {
+    margin-right: 48px;
+  }
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .msg p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 0.98rem;
+  }
+
+  .composer {
+    position: sticky;
+    bottom: calc(env(safe-area-inset-bottom) + 12px);
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: end;
+    padding: 10px;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    background: color-mix(in oklab, var(--bg-elev) 95%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: var(--shadow);
+  }
+  .composer textarea {
+    resize: none;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 1rem;
+    padding: 10px 12px;
+    min-height: 24px;
+    max-height: 200px;
+  }
+  .composer textarea::placeholder {
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 760px) {
+    .msg.user { margin-left: 24px; }
+    .msg.assistant { margin-right: 24px; }
+    .composer { bottom: calc(env(safe-area-inset-bottom) + 76px); }
+  }
+</style>

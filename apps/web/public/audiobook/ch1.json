@@ -1,0 +1,72 @@
+{
+  "chapterId": "ch1",
+  "title": "始计第一",
+  "audioSrc": "/audiobook/ch1.mp3",
+  "durationSeconds": 60,
+  "stub": true,
+  "sentences": [
+    {
+      "idx": 0,
+      "zh": "孙子曰：兵者，国之大事，死生之地，存亡之道，不可不察也。",
+      "pinyin": "Sūnzǐ yuē: bīng zhě, guó zhī dàshì, sǐ shēng zhī dì, cún wáng zhī dào, bù kě bù chá yě.",
+      "en": "Sun Tzu said: War is a great matter of the state — the ground of life and death, the path to survival or ruin. It must be studied with the greatest care.",
+      "start": 0,
+      "end": 12
+    },
+    {
+      "idx": 1,
+      "zh": "故经之以五事，校之以计，而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。",
+      "pinyin": "Gù jīng zhī yǐ wǔ shì, jiào zhī yǐ jì, ér suǒ qí qíng: yī yuē dào, èr yuē tiān, sān yuē dì, sì yuē jiàng, wǔ yuē fǎ.",
+      "en": "Therefore weigh it by five factors and assess by calculation, to grasp its true condition: first the Way, second Heaven, third Earth, fourth the General, fifth Method.",
+      "start": 12,
+      "end": 28
+    },
+    {
+      "idx": 2,
+      "zh": "兵者，诡道也。",
+      "pinyin": "Bīng zhě, guǐ dào yě.",
+      "en": "War is the way of deception.",
+      "start": 28,
+      "end": 32
+    },
+    {
+      "idx": 3,
+      "zh": "攻其无备，出其不意。",
+      "pinyin": "Gōng qí wú bèi, chū qí bù yì.",
+      "en": "Attack where they are unprepared; appear where you are not expected.",
+      "start": 32,
+      "end": 38
+    },
+    {
+      "idx": 4,
+      "zh": "夫未战而庙算胜者，得算多也。",
+      "pinyin": "Fú wèi zhàn ér miào suàn shèng zhě, dé suàn duō yě.",
+      "en": "He who, before the battle is fought, wins through council in the temple, has reckoned the most.",
+      "start": 38,
+      "end": 48
+    }
+  ],
+  "idioms": [
+    {
+      "sentenceIdx": 1,
+      "term": "道、天、地、将、法",
+      "literal": "Way, Heaven, Earth, General, Method",
+      "meaning": "Sun Tzu's five fundamental factors of war — a framework Chinese strategists, businesspeople, and military leaders still invoke today when assessing any contest.",
+      "origin": "These five categories open The Art of War and became the canonical lens for evaluating strategic situations in Chinese thought."
+    },
+    {
+      "sentenceIdx": 2,
+      "term": "诡道",
+      "literal": "Deceptive way / crooked path",
+      "meaning": "The principle that warfare is fundamentally about misdirection — appearing weak when strong, near when far. This phrase is the source of countless later sayings about strategic deception.",
+      "origin": "One of the most-quoted lines in Chinese military philosophy. It marks the shift from rule-bound chivalric warfare to strategic cunning."
+    },
+    {
+      "sentenceIdx": 3,
+      "term": "攻其无备，出其不意",
+      "literal": "Attack where they have no preparation; emerge where they do not expect",
+      "meaning": "A foundational chéngyǔ used to this day in Chinese for any surprise move — in business pitches, sports commentary, even office politics.",
+      "origin": "From this very passage of The Art of War. Still cited verbatim 2,500 years later."
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+---
+import AppShell from "../../layouts/AppShell.astro";
+---
+
+<AppShell title="Vault · Hackathon" active="vault">
+  <span slot="title">Vocab Vault</span>
+
+  <div class="empty" id="empty" hidden>
+    <p class="eyebrow">No cards yet</p>
+    <h2>Tap "Vault" on a sentence in <a href="/app/listen">Listen</a> to save it here.</h2>
+    <p>Each card stores the Chinese, pinyin, English, and a clip of the original audio.</p>
+  </div>
+
+  <ul class="cards" id="cards"></ul>
+
+  <audio id="vault-audio" preload="metadata"></audio>
+</AppShell>
+
+<script>
+  import { listCards, deleteCard, type VaultCard } from "../../lib/vault";
+
+  const cardsEl = document.getElementById("cards")!;
+  const emptyEl = document.getElementById("empty")!;
+  const audio = document.getElementById("vault-audio") as HTMLAudioElement;
+
+  let stopTimer: number | undefined;
+
+  function fmt(t: number) {
+    return new Date(t).toLocaleString();
+  }
+
+  function render(cards: VaultCard[]) {
+    cardsEl.innerHTML = "";
+    if (!cards.length) {
+      emptyEl.hidden = false;
+      return;
+    }
+    emptyEl.hidden = true;
+    for (const c of cards) {
+      const li = document.createElement("li");
+      li.className = "card";
+      li.dataset.id = c.id;
+      li.innerHTML = `
+        <div class="head">
+          <span class="meta">${fmt(c.savedAt)} · 始计第一 · #${c.sentenceIdx + 1}</span>
+          <div class="row-actions">
+            <button class="icon-btn play" type="button" aria-label="Play clip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button class="icon-btn delete" type="button" aria-label="Delete">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="zh"></div>
+        <div class="pinyin"></div>
+        <div class="en"></div>
+      `;
+      li.querySelector<HTMLElement>(".zh")!.textContent = c.zh;
+      li.querySelector<HTMLElement>(".pinyin")!.textContent = c.pinyin;
+      li.querySelector<HTMLElement>(".en")!.textContent = c.en;
+      cardsEl.appendChild(li);
+    }
+  }
+
+  cardsEl.addEventListener("click", async (e) => {
+    const target = e.target as HTMLElement;
+    const cardEl = target.closest<HTMLElement>(".card");
+    if (!cardEl) return;
+    const id = cardEl.dataset.id!;
+
+    if (target.closest(".play")) {
+      const all = await listCards();
+      const c = all.find((x) => x.id === id);
+      if (!c) return;
+      window.clearTimeout(stopTimer);
+      audio.src = c.audioSrc;
+      audio.currentTime = c.start;
+      try {
+        await audio.play();
+        stopTimer = window.setTimeout(() => audio.pause(), (c.end - c.start) * 1000 + 250);
+      } catch (err) {
+        console.warn("vault clip play failed:", err);
+      }
+      return;
+    }
+
+    if (target.closest(".delete")) {
+      await deleteCard(id);
+      render(await listCards());
+    }
+  });
+
+  render(await listCards());
+</script>
+
+<style>
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--ink-muted);
+  }
+  .empty .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .empty h2 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    max-width: 480px;
+    margin: 8px auto 14px;
+    color: var(--ink);
+  }
+  .empty a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 720px;
+    display: grid;
+    gap: 12px;
+  }
+  .card {
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: var(--bg-elev);
+    padding: 18px 20px;
+  }
+  .card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .card .meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+  .row-actions {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: color 140ms ease, border-color 140ms ease;
+  }
+  .icon-btn.play {
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--rule));
+  }
+  .icon-btn:hover {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+
+  .card .zh {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+  .card .pinyin {
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+    color: var(--ink-muted);
+  }
+  .card .en {
+    margin-top: 6px;
+    color: var(--ink-muted);
+    font-size: 0.94rem;
+  }
+</style>

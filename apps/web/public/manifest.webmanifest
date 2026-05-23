@@ -1,0 +1,40 @@
+{
+  "name": "Anthropic Hackathon",
+  "short_name": "Hackathon",
+  "description": "A frontend that works as both a website and an installable app.",
+  "id": "/?source=pwa",
+  "start_url": "/app?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "theme_color": "#cc785c",
+  "background_color": "#f7f5f1",
+  "categories": ["productivity", "developer"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open dashboard",
+      "url": "/app",
+      "description": "Jump straight to the app dashboard."
+    },
+    {
+      "name": "New chat",
+      "url": "/app/chat",
+      "description": "Start a new chat session."
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  active?: "home" | "listen" | "vault" | "settings";
+}
+
+const {
+  title = "App · Anthropic Hackathon",
+  description = "Installable app shell built on the same frontend as the marketing site.",
+  active = "home",
+} = Astro.props;
+
+const nav = [
+  { id: "home", href: "/app", label: "Home", icon: "M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" },
+  { id: "listen", href: "/app/listen", label: "Listen", icon: "M12 3v12.5a3.5 3.5 0 1 1-2-3.16V6h7v9.5a3.5 3.5 0 1 1-2-3.16V3z" },
+  { id: "vault", href: "/app/vault", label: "Vault", icon: "M4 7h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 7l2-4h12l2 4M9 11h6" },
+  { id: "settings", href: "/app/settings", label: "Settings", icon: "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm8.5 4a8.4 8.4 0 0 0-.1-1.4l2-1.5-2-3.4-2.3.9a8.5 8.5 0 0 0-2.5-1.4l-.3-2.5h-4l-.3 2.5a8.5 8.5 0 0 0-2.5 1.4l-2.3-.9-2 3.4 2 1.5A8.4 8.4 0 0 0 3.5 12c0 .5 0 1 .1 1.4l-2 1.5 2 3.4 2.3-.9a8.5 8.5 0 0 0 2.5 1.4l.3 2.5h4l.3-2.5a8.5 8.5 0 0 0 2.5-1.4l2.3.9 2-3.4-2-1.5c.1-.5.1-.9.1-1.4z" },
+] as const;
+---
+
+<!doctype html>
+<html lang="en" data-app-shell>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#f7f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)" />
+    <meta name="application-name" content="Hackathon" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Hackathon" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <title>{title}</title>
+  </head>
+  <body class="app-body">
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="App navigation">
+        <a href="/app" class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Hackathon</span>
+        </a>
+
+        <nav>
+          <ul>
+            {nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={["nav-link", { active: active === item.id }]}
+                  aria-current={active === item.id ? "page" : undefined}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={item.icon} />
+                  </svg>
+                  <span>{item.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <a href="/" class="back-to-site">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back to site
+        </a>
+      </aside>
+
+      <div class="content-wrap">
+        <header class="app-header">
+          <h1 class="page-title"><slot name="title">{title.replace(/\s·.*$/, "")}</slot></h1>
+          <div class="header-actions"><slot name="actions" /></div>
+        </header>
+
+        <main class="content">
+          <slot />
+        </main>
+      </div>
+
+      <nav class="tabbar" aria-label="App tabs">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={["tab", { active: active === item.id }]}
+            aria-current={active === item.id ? "page" : undefined}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d={item.icon} />
+            </svg>
+            <span>{item.label}</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        });
+      }
+    </script>
+
+    <style is:global>
+      html[data-app-shell],
+      html[data-app-shell] body {
+        height: 100%;
+      }
+      .app-body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        display: block;
+      }
+    </style>
+
+    <style>
+      .app-shell {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        min-height: 100dvh;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px 16px calc(22px + env(safe-area-inset-bottom));
+        border-right: 1px solid var(--rule);
+        background: var(--bg-elev);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        padding-inline: 6px;
+      }
+      .brand-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background:
+          radial-gradient(circle at 30% 30%, #ffb39a, transparent 60%),
+          linear-gradient(135deg, var(--accent), #6b3d2e);
+      }
+      .brand-name {
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 2px;
+      }
+      .nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border-radius: 10px;
+        color: var(--ink-muted);
+        font-size: 0.95rem;
+        transition: background 120ms ease, color 120ms ease;
+      }
+      .nav-link:hover {
+        background: color-mix(in oklab, var(--accent) 8%, transparent);
+        color: var(--ink);
+      }
+      .nav-link.active {
+        background: color-mix(in oklab, var(--accent) 14%, transparent);
+        color: var(--ink);
+      }
+
+      .back-to-site {
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-muted);
+        border-top: 1px solid var(--rule);
+        padding-top: 14px;
+      }
+      .back-to-site:hover {
+        color: var(--ink);
+      }
+
+      .content-wrap {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .app-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        height: 64px;
+        padding: 0 clamp(20px, 4vw, 40px);
+        padding-top: env(safe-area-inset-top);
+        border-bottom: 1px solid var(--rule);
+        background: color-mix(in oklab, var(--bg) 86%, transparent);
+        backdrop-filter: saturate(180%) blur(12px);
+      }
+
+      .page-title {
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .header-actions {
+        display: inline-flex;
+        gap: 8px;
+      }
+
+      .content {
+        padding: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px) calc(96px + env(safe-area-inset-bottom));
+      }
+
+      /* Bottom tab bar only shows on small screens / installed app */
+      .tabbar {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        .app-shell {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          display: none;
+        }
+        .tabbar {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: grid;
+          grid-auto-flow: column;
+          grid-auto-columns: 1fr;
+          background: color-mix(in oklab, var(--bg-elev) 92%, transparent);
+          backdrop-filter: saturate(180%) blur(14px);
+          border-top: 1px solid var(--rule);
+          padding-bottom: env(safe-area-inset-bottom);
+          z-index: 20;
+        }
+        .tab {
+          display: grid;
+          place-items: center;
+          gap: 2px;
+          padding: 10px 4px 8px;
+          color: var(--ink-muted);
+          font-family: var(--font-mono);
+          font-size: 0.66rem;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+        .tab.active {
+          color: var(--accent);
+        }
+      }
+    </style>
+  </body>
+</html>

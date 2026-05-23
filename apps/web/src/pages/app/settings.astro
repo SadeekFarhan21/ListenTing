@@ -1,0 +1,225 @@
+---
+import AppShell from "../../layouts/AppShell.astro";
+---
+
+<AppShell title="Settings · Hackathon" active="settings">
+  <span slot="title">Settings</span>
+
+  <div class="grid">
+    <section class="panel">
+      <h3>Appearance</h3>
+      <p>Automatically follows your system theme. Toggle to override for this device.</p>
+      <div class="row">
+        <span>Theme</span>
+        <div class="seg" role="radiogroup" aria-label="Theme">
+          <button type="button" data-theme="system" aria-pressed="true">System</button>
+          <button type="button" data-theme="light" aria-pressed="false">Light</button>
+          <button type="button" data-theme="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Learning</h3>
+      <p>Choose the language you'd like to answer comprehension check-ins in.</p>
+      <div class="row">
+        <span>Answer language</span>
+        <div class="seg" role="radiogroup" aria-label="Answer language">
+          <button type="button" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <span>Check-in cadence</span>
+        <div class="seg" role="radiogroup" aria-label="Check-in cadence">
+          <button type="button" data-cadence="3" aria-pressed="false">Every 3</button>
+          <button type="button" data-cadence="5" aria-pressed="true">Every 5</button>
+          <button type="button" data-cadence="8" aria-pressed="false">Every 8</button>
+        </div>
+      </div>
+      <p class="muted">Voice check-ins fire every Nth sentence and grade your spoken answer.</p>
+    </section>
+
+    <section class="panel">
+      <h3>Installation</h3>
+      <p id="install-status">Checking install state…</p>
+      <button class="btn btn-primary" type="button" id="install-btn" hidden>Install app</button>
+    </section>
+
+    <section class="panel">
+      <h3>Offline cache</h3>
+      <p>The service worker keeps the app shell available without a network.</p>
+      <button class="btn btn-ghost" type="button" id="clear-cache">Clear cached assets</button>
+      <p class="muted" id="cache-status"></p>
+    </section>
+
+    <section class="panel">
+      <h3>About</h3>
+      <p>Anthropic Hackathon frontend — Astro + PWA. One codebase, two surfaces.</p>
+      <p class="muted">Build: dev</p>
+    </section>
+  </div>
+</AppShell>
+
+<script>
+  import { getAnswerLang, setAnswerLang, getCheckinCadence, setCheckinCadence } from "../../lib/settings";
+
+  // Answer language
+  const langButtons = document.querySelectorAll<HTMLButtonElement>("[data-lang]");
+  const currentLang = getAnswerLang();
+  langButtons.forEach((b) =>
+    b.setAttribute("aria-pressed", String(b.dataset.lang === currentLang)),
+  );
+  langButtons.forEach((b) =>
+    b.addEventListener("click", () => {
+      const v = b.dataset.lang as "en" | "zh";
+      setAnswerLang(v);
+      langButtons.forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.lang === v)));
+    }),
+  );
+
+  // Cadence
+  const cadenceButtons = document.querySelectorAll<HTMLButtonElement>("[data-cadence]");
+  const currentCadence = getCheckinCadence();
+  cadenceButtons.forEach((b) =>
+    b.setAttribute("aria-pressed", String(Number(b.dataset.cadence) === currentCadence)),
+  );
+  cadenceButtons.forEach((b) =>
+    b.addEventListener("click", () => {
+      const v = Number(b.dataset.cadence);
+      setCheckinCadence(v);
+      cadenceButtons.forEach((x) =>
+        x.setAttribute("aria-pressed", String(Number(x.dataset.cadence) === v)),
+      );
+    }),
+  );
+
+  // Theme toggle
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-theme]");
+  const saved = localStorage.getItem("theme") as "system" | "light" | "dark" | null;
+  function applyTheme(value: "system" | "light" | "dark") {
+    const root = document.documentElement;
+    if (value === "system") {
+      root.style.colorScheme = "";
+      root.removeAttribute("data-theme");
+    } else {
+      root.style.colorScheme = value;
+      root.setAttribute("data-theme", value);
+    }
+    buttons.forEach((b) =>
+      b.setAttribute("aria-pressed", String(b.dataset.theme === value)),
+    );
+    localStorage.setItem("theme", value);
+  }
+  if (saved) applyTheme(saved);
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => applyTheme(b.dataset.theme as never)),
+  );
+
+  // Install prompt
+  const status = document.getElementById("install-status");
+  const installBtn = document.getElementById("install-btn") as HTMLButtonElement | null;
+  let deferred: any = null;
+  const standalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    (navigator as any).standalone === true;
+
+  if (standalone) {
+    status!.textContent = "Installed and running as an app — nice.";
+  } else {
+    status!.textContent = "Not installed yet. Use your browser's install button, or wait for a prompt.";
+  }
+
+  window.addEventListener("beforeinstallprompt", (e: Event) => {
+    e.preventDefault();
+    deferred = e;
+    installBtn!.hidden = false;
+    status!.textContent = "Ready to install this site as an app.";
+  });
+
+  installBtn?.addEventListener("click", async () => {
+    if (!deferred) return;
+    deferred.prompt();
+    const { outcome } = await deferred.userChoice;
+    status!.textContent = outcome === "accepted" ? "Installing…" : "Maybe later.";
+    deferred = null;
+    installBtn!.hidden = true;
+  });
+
+  window.addEventListener("appinstalled", () => {
+    status!.textContent = "Installed. Launch it from your home screen or app menu.";
+    installBtn!.hidden = true;
+  });
+
+  // Cache clear
+  const clearBtn = document.getElementById("clear-cache");
+  const cacheStatus = document.getElementById("cache-status");
+  clearBtn?.addEventListener("click", async () => {
+    if (!("caches" in window)) {
+      cacheStatus!.textContent = "Cache API unavailable in this browser.";
+      return;
+    }
+    const keys = await caches.keys();
+    await Promise.all(keys.map((k) => caches.delete(k)));
+    const regs = await navigator.serviceWorker?.getRegistrations();
+    await Promise.all(regs?.map((r) => r.unregister()) ?? []);
+    cacheStatus!.textContent = "Cleared. Reload to refresh the worker.";
+  });
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    max-width: 980px;
+  }
+  .panel {
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .panel h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+  }
+  .panel p {
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+  }
+  .muted {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    margin-top: 8px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 3px;
+    background: var(--bg);
+  }
+  .seg button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--ink-muted);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+</style>

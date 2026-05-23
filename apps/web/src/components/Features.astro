@@ -1,0 +1,119 @@
+---
+const features = [
+  {
+    title: "Astro-powered",
+    body:
+      "Static-first by default, with islands for interactivity where you need it. Zero JavaScript shipped unless you ask.",
+    icon: "M4 6h16M4 12h10M4 18h16",
+  },
+  {
+    title: "Anthropic typography",
+    body:
+      "Sans for UI, Serif for headings, Mono for code — loaded once from CDN, themed in one place.",
+    icon: "M6 4h12v4H6zM6 12h12M6 18h8",
+  },
+  {
+    title: "TypeScript everywhere",
+    body:
+      "Strict TS config, typed Astro props, ready for a tRPC or REST layer when the backend lands.",
+    icon: "M4 4h16v16H4zM9 9l3 6 3-6",
+  },
+  {
+    title: "Dark mode out of the box",
+    body:
+      "Respects the user's system preference using a single CSS layer — no flashes, no flag-flipping.",
+    icon: "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",
+  },
+  {
+    title: "Workspace-friendly",
+    body:
+      "Slots into the existing pnpm workspace as apps/web so we can add api, agents, or shared packages later.",
+    icon: "M3 7h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 16h7v5H3z",
+  },
+  {
+    title: "Deploy anywhere",
+    body:
+      "Static output drops on Vercel, Netlify, Cloudflare, or any boring HTTP server. Pick later.",
+    icon: "M12 3v12m0 0l-4-4m4 4l4-4M5 21h14",
+  },
+];
+---
+
+<section id="features" class="features">
+  <div class="container">
+    <span class="eyebrow">What's inside</span>
+    <h2>A frontend that gets out of your way.</h2>
+    <p class="intro">
+      The scaffold is intentionally small — fewer moving parts, faster to
+      reason about during the build window.
+    </p>
+
+    <ul class="grid">
+      {features.map((f) => (
+        <li class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d={f.icon} />
+            </svg>
+          </div>
+          <h3>{f.title}</h3>
+          <p>{f.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding-block: clamp(56px, 9vh, 96px);
+  }
+
+  .intro {
+    max-width: 56ch;
+    margin-bottom: 32px;
+  }
+
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    box-shadow: var(--shadow);
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--rule));
+  }
+
+  .icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .card h3 {
+    margin-bottom: 6px;
+  }
+
+  .card p {
+    margin: 0;
+    font-size: 0.97rem;
+  }
+</style>
