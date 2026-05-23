@@ -26,9 +26,9 @@ export function IdiomCard({ idiom, onClose }: Props) {
 
   if (!idiom) return null;
   return (
-    <div className="fixed inset-x-0 bottom-64 sm:bottom-72 z-30 px-3 pointer-events-none">
-      <div className="mx-auto max-w-md pointer-events-auto">
-        <div className="ink-card-dark p-5 animate-slide-up shadow-xl shadow-ink/30">
+    <div className="fixed right-4 bottom-24 z-30 pointer-events-none">
+      <div className="w-80 pointer-events-auto">
+        <div className="bg-ink/40 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 animate-slide-up shadow-2xl shadow-black/40">
           <div className="flex items-start justify-between gap-3 mb-3">
             <span className="chip border-white/15 bg-white/10 text-ink-100/90">{KIND_LABEL[idiom.kind]}</span>
             <button
