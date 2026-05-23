@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd)",
+      "Bash(iconv -f GBK -t UTF-8 \"/Users/alex/Desktop/Anthropic-Hackathon/《孙子兵法》原文与译文_qinkan.net.txt\")"
+    ]
+  }
+}
