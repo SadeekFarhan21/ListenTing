@@ -3,7 +3,7 @@ import "../styles/global.css";
 interface Props {
   title?: string;
 }
-const { title = "Listening · Hackathon Deck" } = Astro.props;
+const { title = "ListenTing · Hackathon Deck" } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,19 +18,10 @@ const { title = "Listening · Hackathon Deck" } = Astro.props;
       <slot />
     </div>
 
-    <div class="hud" id="hud">
-      <button id="prev" aria-label="Previous slide">‹</button>
-      <span id="counter">1 / 1</span>
-      <button id="next" aria-label="Next slide">›</button>
-    </div>
-
     <script is:inline>
       (function () {
         const deck = document.getElementById("deck");
         const slides = Array.from(deck.querySelectorAll(".slide"));
-        const counter = document.getElementById("counter");
-        const prevBtn = document.getElementById("prev");
-        const nextBtn = document.getElementById("next");
 
         const fromHash = () => {
           const n = parseInt((location.hash || "").replace("#", ""), 10);
@@ -41,7 +32,6 @@ const { title = "Listening · Hackathon Deck" } = Astro.props;
 
         function render() {
           slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
-          counter.textContent = `${i + 1} / ${slides.length}`;
           const hash = `#${i + 1}`;
           if (location.hash !== hash) history.replaceState(null, "", hash);
         }
@@ -49,8 +39,6 @@ const { title = "Listening · Hackathon Deck" } = Astro.props;
           i = Math.min(Math.max(i + delta, 0), slides.length - 1);
           render();
         }
-        prevBtn.addEventListener("click", () => go(-1));
-        nextBtn.addEventListener("click", () => go(1));
         window.addEventListener("keydown", (e) => {
           if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
             e.preventDefault();
