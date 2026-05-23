@@ -35,45 +35,37 @@ export function WordCard({ word, sentence, chapterId, timestamp, onClose, onSave
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-40 sm:bottom-44 z-30 px-3 pointer-events-none">
+    <div className="fixed inset-x-0 bottom-56 sm:bottom-60 z-30 px-3 pointer-events-none">
       <div className="mx-auto max-w-sm pointer-events-auto">
-        <div className="bg-ink/40 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 animate-slide-up shadow-2xl shadow-black/40">
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <span className="chip border-white/15 bg-white/10 text-ink-100/90">Save to Vault</span>
+        <div className="bg-ink/40 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 animate-slide-up shadow-2xl shadow-black/40">
+          <div className="flex items-center justify-between gap-3 mb-2">
+            <div className="flex items-baseline gap-3">
+              <span className="font-zh text-3xl font-medium tracking-wide text-white">{word}</span>
+              <span className="text-xs text-ink-300">tap chars to extend</span>
+            </div>
             <button
               onClick={onClose}
               className="text-ink-200 hover:text-white p-1 -m-1 transition"
               aria-label="Close"
             >
-              <Close width={20} height={20} />
+              <Close width={18} height={18} />
             </button>
           </div>
-
-          <div className="font-zh text-4xl font-medium tracking-wide text-white mb-1">{word}</div>
-          <div className="text-xs text-ink-300 mb-4">
-            Tap more characters to extend selection
-          </div>
-
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs uppercase tracking-wider text-ink-300 mb-1 block">
-                Meaning
-              </label>
-              <input
-                autoFocus
-                value={meaning}
-                onChange={(e) => setMeaning(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSave()}
-                placeholder="Enter meaning…"
-                className="w-full bg-white/10 text-white placeholder-ink-400 rounded px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-sun/50"
-              />
-            </div>
+          <div className="flex gap-2">
+            <input
+              autoFocus
+              value={meaning}
+              onChange={(e) => setMeaning(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSave()}
+              placeholder="Enter meaning…"
+              className="flex-1 bg-white/10 text-white placeholder-ink-400 rounded-xl px-3 py-1.5 text-sm outline-none focus:ring-1 focus:ring-sun/50"
+            />
             <button
               onClick={handleSave}
               disabled={!meaning.trim() || saving}
-              className="w-full bg-sun text-white rounded py-2 text-sm font-medium disabled:opacity-40 transition hover:bg-sun/90 active:scale-95"
+              className="bg-sun text-white rounded-xl px-4 py-1.5 text-sm font-medium disabled:opacity-40 transition hover:bg-sun/90 active:scale-95 shrink-0"
             >
-              {saving ? "Saving…" : "Add to Vault"}
+              {saving ? "…" : "Save"}
             </button>
           </div>
         </div>
