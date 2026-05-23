@@ -16,7 +16,10 @@ export function Waveform({ active = true, count = 5, className = "" }: Props) {
           className="wave-bar"
           style={{
             height: `${100 - Math.abs(i - (count - 1) / 2) * 18}%`,
-            animation: active ? `wave 1.2s ease-in-out infinite` : "none",
+            animationName: active ? "wave" : "none",
+            animationDuration: "1.2s",
+            animationTimingFunction: "ease-in-out",
+            animationIterationCount: "infinite",
             animationDelay: `${i * 90}ms`,
             opacity: active ? 1 : 0.35,
           }}
