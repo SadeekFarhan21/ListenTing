@@ -115,9 +115,3 @@ export const Trash = (p: P) => (
     <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" />
   </svg>
 );
-export const Eye = (p: P) => (
-  <svg {...base(p)}>
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);

@@ -5,10 +5,9 @@ import type { Chapter, Idiom, Sentence } from "@/lib/types";
 import { fmtTime, cn } from "@/lib/cn";
 import { useSettings } from "@/lib/settings";
 import { usePlayer } from "@/lib/usePlayer";
-import { ArrowLeft, Back15, Bookmark, Close, Eye, Fwd30, Mic, Pause, Play, Sparkle, Volume } from "./Icons";
+import { ArrowLeft, Back15, Bookmark, Fwd30, Mic, Pause, Play, Sparkle, Volume } from "./Icons";
 import { Waveform } from "./Waveform";
 import { IdiomCard } from "./IdiomCard";
-import { WordCard } from "./WordCard";
 import { VaultSheet } from "./VaultSheet";
 import { CheckinModal } from "./CheckinModal";
 
@@ -22,40 +21,7 @@ export function Player({ chapter }: Props) {
   const [openVault, setOpenVault] = useState(false);
   const [openCheckin, setOpenCheckin] = useState(false);
   const [translatedEnglish, setTranslatedEnglish] = useState<Record<number, string>>({});
-  const [visualizeState, setVisualizeState] = useState<"idle" | "loading" | "shown">("idle");
   const lastCheckinAtRef = useRef<number>(0);
-
-  const chapterImageSrc = Number(chapter.id) <= 3 ? `/images/chapter-${chapter.id}.png` : null;
-
-  function handleVisualize() {
-    if (state.isPlaying) pause();
-    setVisualizeState("loading");
-    setTimeout(() => setVisualizeState("shown"), 1800);
-  }
-
-  // Word selection for vocab vault
-  const [charSelection, setCharSelection] = useState<{
-    sentenceId: number;
-    start: number;
-    end: number;
-    anchor: number;
-    sentence: Sentence;
-  } | null>(null);
-
-  const handleCharClick = useCallback((s: Sentence, charIdx: number) => {
-    setOpenIdiom(null);
-    setCharSelection((prev) => {
-      if (!prev || prev.sentenceId !== s.id) {
-        return { sentenceId: s.id, start: charIdx, end: charIdx + 1, anchor: charIdx, sentence: s };
-      }
-      // Tap same single char → deselect
-      if (prev.anchor === charIdx && prev.end - prev.start === 1) return null;
-      // Extend range from anchor to this char
-      const start = Math.min(prev.anchor, charIdx);
-      const end = Math.max(prev.anchor, charIdx) + 1;
-      return { ...prev, start, end };
-    });
-  }, []);
 
   // Track which idioms were already shown this play session to avoid repeating
   const shownIdiomsRef = useRef<Set<string>>(new Set());
@@ -66,7 +32,6 @@ export function Player({ chapter }: Props) {
       const fresh = s.idioms?.find((i) => !shownIdiomsRef.current.has(i.term));
       if (fresh) {
         shownIdiomsRef.current.add(fresh.term);
-        setCharSelection(null);
         setOpenIdiom(fresh);
       }
     },
@@ -81,13 +46,13 @@ export function Player({ chapter }: Props) {
     setRate(settings.playbackRate);
   }, [settings.playbackRate, setRate]);
 
-  // Pause when a blocking overlay opens; resume on close (decided by overlay)
+  // Pause when an overlay opens; resume on close (decided by overlay)
   useEffect(() => {
-    if (openVault || openCheckin) {
+    if (openIdiom || openVault || openCheckin) {
       if (state.isPlaying) pause();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openVault, openCheckin]);
+  }, [openIdiom, openVault, openCheckin]);
 
   // Scheduled voice check-in
   useEffect(() => {
@@ -183,16 +148,6 @@ export function Player({ chapter }: Props) {
             <Volume width={14} height={14} />
             {settings.playbackRate}×
           </button>
-          {chapterImageSrc && (
-            <button
-              onClick={handleVisualize}
-              className="chip text-gold border-gold/30 hover:bg-gold/10"
-              aria-label="Visualize scene"
-            >
-              <Eye width={14} height={14} />
-              Scene
-            </button>
-          )}
         </div>
         <div className="h-1 bg-ink-200/40">
           <div
@@ -244,15 +199,7 @@ export function Player({ chapter }: Props) {
                     isActive ? "text-2xl text-ink" : "text-lg text-ink-400",
                   )}
                 >
-                  {renderInteractiveText(
-                    s.zh,
-                    s.idioms,
-                    charSelection?.sentenceId === s.id
-                      ? { start: charSelection.start, end: charSelection.end }
-                      : null,
-                    (i) => { setCharSelection(null); setOpenIdiom(i); },
-                    (idx) => handleCharClick(s, idx),
-                  )}
+                  {renderWithIdiomHighlight(s.zh, s.idioms, (i) => setOpenIdiom(i))}
                 </p>
                 {settings.showGloss && s.gloss && (
                   <p className={cn("font-zh text-sm mt-1.5", isActive ? "text-ink-500" : "text-ink-300")}>
@@ -343,67 +290,7 @@ export function Player({ chapter }: Props) {
         </div>
       </div>
 
-      {/* Visualize Scene overlay */}
-      {visualizeState !== "idle" && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-6">
-          <div className="relative w-full max-w-sm bg-ink-900 rounded-2xl overflow-hidden shadow-2xl">
-            <button
-              onClick={() => setVisualizeState("idle")}
-              className="absolute top-3 right-3 z-10 text-ink-300 hover:text-white p-1"
-              aria-label="Close"
-            >
-              <Close width={20} height={20} />
-            </button>
-            <div className="px-4 pt-4 pb-2 flex items-center gap-2">
-              <Sparkle width={14} height={14} className="text-gold" />
-              <span className="text-xs uppercase tracking-widest text-ink-300">
-                Chapter {chapter.id} · Scene
-              </span>
-            </div>
-            {visualizeState === "loading" ? (
-              <div className="flex flex-col items-center justify-center gap-4 py-16 px-6">
-                <div className="relative w-10 h-10">
-                  <div className="absolute inset-0 rounded-full border-2 border-gold/20" />
-                  <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-gold animate-spin" />
-                </div>
-                <p className="text-sm text-ink-300 text-center animate-pulse">
-                  Generating scene visualization…
-                </p>
-              </div>
-            ) : (
-              <div className="p-3 pt-1">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={chapterImageSrc!}
-                  alt={`Chapter ${chapter.id} scene`}
-                  className="w-full rounded-xl object-cover"
-                />
-                <p className="text-center text-xs text-ink-400 mt-2 mb-1">
-                  {chapter.titleEn}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      <IdiomCard
-        idiom={openIdiom}
-        sentence={activeSentence ?? null}
-        chapterId={chapter.id}
-        timestamp={state.currentTime}
-        onClose={() => setOpenIdiom(null)}
-      />
-      {charSelection && (
-        <WordCard
-          word={charSelection.sentence.zh.slice(charSelection.start, charSelection.end)}
-          sentence={charSelection.sentence}
-          chapterId={chapter.id}
-          timestamp={state.currentTime}
-          onClose={() => setCharSelection(null)}
-          onSaved={() => setCharSelection(null)}
-        />
-      )}
+      <IdiomCard idiom={openIdiom} onClose={() => setOpenIdiom(null)} />
       <VaultSheet
         open={openVault}
         sentence={activeSentence ?? null}
@@ -433,59 +320,44 @@ function cycleRate(r: number): number {
   return ladder[(i + 1) % ladder.length] ?? 1;
 }
 
-function renderInteractiveText(
+function renderWithIdiomHighlight(
   zh: string,
   idioms: Sentence["idioms"],
-  selection: { start: number; end: number } | null,
-  onIdiomClick: (i: Idiom) => void,
-  onCharClick: (idx: number) => void,
+  onClick: (i: Idiom) => void,
 ): React.ReactNode {
-  // Build non-overlapping idiom spans
-  const idiomSpans: Array<{ start: number; end: number; idiom: Idiom }> = [];
-  if (idioms) {
-    for (const idi of idioms) {
-      let from = 0;
-      while (true) {
-        const idx = zh.indexOf(idi.term, from);
-        if (idx === -1) break;
-        idiomSpans.push({ start: idx, end: idx + idi.term.length, idiom: idi });
-        from = idx + idi.term.length;
-      }
+  if (!idioms || idioms.length === 0) return zh;
+  // Find spans of idiom terms, leftmost first; allow overlap by greedy non-overlap
+  const matches: Array<{ start: number; end: number; idiom: Idiom }> = [];
+  for (const idi of idioms) {
+    let from = 0;
+    while (true) {
+      const idx = zh.indexOf(idi.term, from);
+      if (idx === -1) break;
+      matches.push({ start: idx, end: idx + idi.term.length, idiom: idi });
+      from = idx + idi.term.length;
     }
-    idiomSpans.sort((a, b) => a.start - b.start || b.end - a.end);
   }
-  const taken: typeof idiomSpans = [];
+  matches.sort((a, b) => a.start - b.start || b.end - a.end);
+  const taken: Array<{ start: number; end: number; idiom: Idiom }> = [];
   let cursor = 0;
-  for (const m of idiomSpans) {
-    if (m.start >= cursor) { taken.push(m); cursor = m.end; }
+  for (const m of matches) {
+    if (m.start >= cursor) {
+      taken.push(m);
+      cursor = m.end;
+    }
   }
-
-  const renderChars = (from: number, to: number) =>
-    Array.from({ length: to - from }, (_, k) => {
-      const j = from + k;
-      const sel = selection && j >= selection.start && j < selection.end;
-      return (
-        <span
-          key={`c${j}`}
-          onClick={(e) => { e.stopPropagation(); onCharClick(j); }}
-          className={cn(
-            "cursor-pointer transition-colors",
-            sel ? "text-sun bg-sun/20 rounded-sm" : "hover:text-sun",
-          )}
-        >
-          {zh[j]}
-        </span>
-      );
-    });
-
+  if (taken.length === 0) return zh;
   const out: React.ReactNode[] = [];
   let i = 0;
   for (const m of taken) {
-    if (m.start > i) out.push(...renderChars(i, m.start));
+    if (m.start > i) out.push(zh.slice(i, m.start));
     out.push(
       <button
-        key={`id${m.start}`}
-        onClick={(e) => { e.stopPropagation(); onIdiomClick(m.idiom); }}
+        key={`${m.start}-${m.end}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(m.idiom);
+        }}
         className="text-sun underline decoration-sun/40 decoration-2 underline-offset-4 hover:decoration-sun"
       >
         {zh.slice(m.start, m.end)}
@@ -493,6 +365,6 @@ function renderInteractiveText(
     );
     i = m.end;
   }
-  if (i < zh.length) out.push(...renderChars(i, zh.length));
+  if (i < zh.length) out.push(zh.slice(i));
   return out;
 }

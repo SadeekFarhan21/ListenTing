@@ -1,8 +1,9 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Chapter, Sentence, CheckinGrade, CheckinQuestion } from "@/lib/types";
-import { createRecognizer, hasBrowserSTT } from "@/lib/speech";
+import { createRecognizer, hasBrowserSTT, speak } from "@/lib/speech";
 import { Mic, Close, Check, Sparkle } from "./Icons";
+import { Waveform } from "./Waveform";
 
 interface Props {
   open: boolean;
@@ -13,7 +14,7 @@ interface Props {
   onClose: (resumePlayback: boolean) => void;
 }
 
-type Phase = "loading" | "listening" | "grading" | "result" | "error";
+type Phase = "loading" | "asking" | "listening" | "grading" | "result" | "error";
 
 const VERDICT_COLOR: Record<CheckinGrade["verdict"], string> = {
   great: "text-jade",
@@ -36,6 +37,7 @@ export function CheckinModal({ open, chapter, contextSentences, language, onClos
   const [grade, setGrade] = useState<CheckinGrade | null>(null);
   const [error, setError] = useState<string | null>(null);
   const recRef = useRef<ReturnType<typeof createRecognizer> | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const sttAvailable = useMemo(() => hasBrowserSTT(), []);
 
@@ -68,6 +70,13 @@ export function CheckinModal({ open, chapter, contextSentences, language, onClos
         const data = (await resp.json()) as CheckinQuestion;
         if (cancelled) return;
         setQuestion(data);
+        setPhase("asking");
+
+        // Try ElevenLabs first; fall back to browser TTS
+        const spoken = await tryElevenLabs(data.question, language);
+        if (cancelled) return;
+        if (!spoken) await speak(data.question, language);
+        if (cancelled) return;
         setPhase("listening");
         startListening();
       } catch (e) {
@@ -80,9 +89,40 @@ export function CheckinModal({ open, chapter, contextSentences, language, onClos
     return () => {
       cancelled = true;
       recRef.current?.stop();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
+
+  const tryElevenLabs = async (text: string, lang: "en" | "zh"): Promise<boolean> => {
+    try {
+      const r = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, language: lang }),
+      });
+      if (!r.ok) return false;
+      const blob = await r.blob();
+      const url = URL.createObjectURL(blob);
+      const a = new Audio(url);
+      audioRef.current = a;
+      await new Promise<void>((resolve) => {
+        a.onended = () => resolve();
+        a.onerror = () => resolve();
+        a.play().catch(() => resolve());
+      });
+      URL.revokeObjectURL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
   const startListening = useCallback(() => {
     if (!sttAvailable) {
@@ -161,6 +201,16 @@ export function CheckinModal({ open, chapter, contextSentences, language, onClos
           <div className="text-ink-200 flex flex-col items-center gap-3 animate-fade-in">
             <Sparkle className="text-gold animate-pulse-soft" width={28} height={28} />
             <p className="text-sm">Thinking of a good question…</p>
+          </div>
+        )}
+
+        {phase === "asking" && question && (
+          <div className="text-center animate-fade-in">
+            <div className="text-xs uppercase tracking-widest text-gold mb-3">Listen</div>
+            <p className="text-2xl sm:text-3xl text-white font-serif-display leading-snug">{question.question}</p>
+            <div className="mt-6 text-ink-200">
+              <Waveform active count={7} className="text-gold" />
+            </div>
           </div>
         )}
 
